@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Instagram, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Github, Globe, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { PROFILE } from '@/constants/profile';
 import { fadeInUp, fadeInLeft, fadeInRight } from '@/utils/animations';
 
@@ -25,14 +25,14 @@ const CONTACT_LINKS = [
   {
     icon: Github,
     label: 'GitHub',
-    value: 'github.com/haeunlee',
+    value: 'github.com/leehaeun22',
     href: PROFILE.github,
   },
   {
-    icon: Instagram,
-    label: 'Instagram',
-    value: '@haeunlee',
-    href: PROFILE.instagram,
+    icon: Globe,
+    label: 'Portfolio',
+    value: 'portfolio-haeun-orpin.vercel.app',
+    href: 'https://portfolio-haeun-orpin.vercel.app',
   },
 ];
 
@@ -81,23 +81,18 @@ export function ContactSection() {
     <section id="contact" className="section-padding">
       <div className="section-container">
         {/* Title */}
-        <motion.div {...fadeInUp} className="text-center mb-16 md:mb-[72px]">
-          <span className="inline-block text-sm font-semibold text-rose-500 uppercase tracking-widest mb-3">
-            Contact
-          </span>
+        <motion.div {...fadeInUp} className="section-heading">
+          <span className="section-eyebrow">Contact</span>
           <h2 className="text-heading-1 text-neutral-900 dark:text-white mb-4">
-            함께 이야기해요 💌
+            함께 문제를 해결할 기회를 기다립니다
           </h2>
-          <p className="text-neutral-500 dark:text-neutral-400 max-w-lg mx-auto">
-            궁금한 점이나 협업 제안이 있으시면 언제든지 연락주세요!
+          <p className="section-description">
+            AI와 웹 시스템을 함께 만드는 기회, 프로젝트 제안, 채용 관련 연락을 환영합니다.
           </p>
-          <div
-            className="mt-4 w-16 h-1 rounded-full mx-auto"
-            style={{ background: 'linear-gradient(90deg, #f43f5e, #a855f7)' }}
-          />
+          <div className="section-line" />
         </motion.div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-5 gap-14 xl:gap-20 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 gap-8 xl:grid-cols-5 xl:gap-10">
           {/* Contact info */}
           <motion.div {...fadeInLeft} className="xl:col-span-2 space-y-6">
             <div>
@@ -115,12 +110,9 @@ export function ContactSection() {
                 href={href}
                 target={href.startsWith('mailto') ? undefined : '_blank'}
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 glass-card p-5 rounded-2xl hover:shadow-lg hover:shadow-rose-100/30 dark:hover:shadow-rose-900/20 transition-all duration-200 group"
+                className="surface-card group flex items-center gap-4 p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/30 dark:hover:shadow-rose-900/20"
               >
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110"
-                  style={{ background: 'linear-gradient(135deg, rgba(244,63,94,0.15), rgba(168,85,247,0.15))' }}
-                >
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-rose-50 transition-transform group-hover:scale-110 dark:bg-rose-950/30">
                   <Icon size={20} className="text-rose-500" />
                 </div>
                 <div>
@@ -132,18 +124,14 @@ export function ContactSection() {
 
             {/* Availability note */}
             <div
-              className="p-5 rounded-2xl text-sm"
-              style={{
-                background: 'linear-gradient(135deg, rgba(244,63,94,0.08), rgba(168,85,247,0.08))',
-                border: '1px solid rgba(244,63,94,0.15)',
-              }}
+              className="surface-card p-5 text-sm"
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 <span className="font-semibold text-neutral-900 dark:text-white">현재 활동 중</span>
               </div>
               <p className="text-neutral-500 dark:text-neutral-400">
-                협업 및 프로젝트 참여를 환영합니다 ✨
+                함께 문제를 해결하고 새로운 시스템을 만드는 기회를 기다리고 있습니다.
               </p>
             </div>
           </motion.div>
@@ -154,24 +142,20 @@ export function ContactSection() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="min-h-96 glass-card rounded-2xl p-8 sm:p-10 flex flex-col items-center justify-center text-center gap-5"
+                className="surface-card flex min-h-96 flex-col items-center justify-center gap-5 p-8 text-center sm:p-10"
               >
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center"
-                  style={{ background: 'linear-gradient(135deg, rgba(244,63,94,0.15), rgba(168,85,247,0.15))' }}
-                >
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-rose-50 dark:bg-rose-950/30">
                   <CheckCircle size={32} className="text-rose-500" />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
-                  메시지를 보냈어요! 🎉
+                  메시지를 보냈습니다
                 </h3>
                 <p className="text-neutral-500 dark:text-neutral-400">
                   빠른 시일 내에 답장드릴게요
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
-                  className="mt-4 min-h-12 px-7 py-3 rounded-full text-sm font-semibold text-white"
-                  style={{ background: 'linear-gradient(135deg, #f43f5e, #a855f7)' }}
+                  className="gradient-button mt-4 min-h-12 rounded-full px-7 py-3 text-sm font-semibold text-white"
                 >
                   다시 작성하기
                 </button>
@@ -180,7 +164,7 @@ export function ContactSection() {
               <form
                 onSubmit={handleSubmit}
                 noValidate
-                className="glass-card rounded-2xl p-6 sm:p-8 xl:p-10 space-y-6"
+                className="surface-card space-y-6 p-6 sm:p-8 xl:p-10"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
@@ -252,7 +236,7 @@ export function ContactSection() {
                     value={form.message}
                     onChange={handleChange}
                     rows={5}
-                    placeholder="안녕하세요! 함께하고 싶은 내용을 자유롭게 적어주세요 ☺️"
+                    placeholder="안녕하세요. 함께하고 싶은 내용을 자유롭게 적어주세요."
                     className={inputClass('message') + ' min-h-40 resize-y'}
                     aria-invalid={!!errors.message}
                   />
@@ -266,8 +250,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full min-h-14 flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-white transition-all duration-200 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30 disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.02]"
-                  style={{ background: 'linear-gradient(135deg, #f43f5e, #a855f7)' }}
+                  className="gradient-button flex min-h-14 w-full items-center justify-center gap-2 rounded-xl px-6 py-4 font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-rose-200/50 disabled:cursor-not-allowed disabled:opacity-70 dark:hover:shadow-rose-900/30"
                 >
                   {status === 'loading' ? (
                     <>

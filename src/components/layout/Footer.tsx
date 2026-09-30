@@ -1,4 +1,6 @@
-import { Github, Instagram, Mail, Heart } from 'lucide-react';
+'use client';
+
+import { ArrowUp, Github, Mail } from 'lucide-react';
 import { PROFILE } from '@/constants/profile';
 
 export function Footer() {
@@ -6,26 +8,16 @@ export function Footer() {
 
   const socialLinks = [
     { icon: Github, href: PROFILE.github, label: 'GitHub' },
-    { icon: Instagram, href: PROFILE.instagram, label: 'Instagram' },
     { icon: Mail, href: `mailto:${PROFILE.email}`, label: 'Email' },
   ];
 
   return (
-    <footer className="bg-neutral-950 text-white py-12">
+    <footer className="bg-neutral-950 py-12 text-white">
       <div className="section-container">
         <div className="flex flex-col items-center gap-6">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <span className="text-2xl">🌸</span>
-            <span
-              className="font-bold text-lg"
-              style={{
-                background: 'linear-gradient(135deg, #f43f5e, #a855f7)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
+            <span className="gradient-text text-lg font-bold">
               {PROFILE.name}
             </span>
           </div>
@@ -47,13 +39,21 @@ export function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="text-neutral-500 text-sm flex items-center gap-1.5">
-            © {currentYear} {PROFILE.name}. Made with{' '}
-            <Heart size={14} className="text-rose-500 fill-rose-500" /> All rights reserved.
+          <p className="text-sm text-neutral-500">
+            © {currentYear} Haeun Lee. All rights reserved.
           </p>
 
           {/* University */}
           <p className="text-neutral-600 text-xs">{PROFILE.university} · {PROFILE.major}</p>
+
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex h-10 items-center gap-2 rounded-full border border-white/10 px-4 text-sm font-semibold text-neutral-300 transition-colors hover:border-rose-400 hover:text-rose-300"
+          >
+            <ArrowUp size={15} />
+            위로 이동
+          </button>
         </div>
       </div>
     </footer>

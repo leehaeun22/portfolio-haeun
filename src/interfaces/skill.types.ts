@@ -2,7 +2,8 @@
 
 export interface Skill {
   name: string;
-  level: number; // 0-100
+  levelLabel: 'Main' | 'Experienced' | 'Used' | 'Research';
+  description?: string;
 }
 
 export interface SkillCategory {

@@ -1,12 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowDown, Sparkles, Github, Mail } from 'lucide-react';
+import { ArrowDown, FolderKanban, Github } from 'lucide-react';
 import Image from 'next/image';
 import { PROFILE } from '@/constants/profile';
 import { fadeInUp } from '@/utils/animations';
 
-const ROLES = ['프론트엔드 개발자', 'UI/UX 디자이너', '크리에이티브 메이커'];
+const ROLES = ['AI', 'Software Engineer', 'Web Developer'];
 
 export function HeroSection() {
   const handleScrollToAbout = () => {
@@ -16,60 +16,19 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-28 sm:py-32"
+      className="soft-gradient-surface relative flex min-h-screen items-center justify-center overflow-hidden py-28 sm:py-32"
     >
-      {/* Gradient background */}
-      <div
-        className="absolute inset-0 animate-gradient"
-        style={{
-          background:
-            'linear-gradient(135deg, #fff1f2 0%, #fdf4ff 30%, #f0f9ff 60%, #fff1f2 100%)',
-        }}
-      />
-      <div className="dark:block hidden absolute inset-0 animate-gradient"
-        style={{
-          background: 'linear-gradient(135deg, #1a0010 0%, #12001a 30%, #001214 60%, #1a0010 100%)',
-        }}
-      />
-
-      {/* Decorative blobs */}
-      <div
-        className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full opacity-20 blur-3xl animate-float pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #f43f5e, #a855f7)' }}
-      />
-      <div
-        className="absolute bottom-1/3 right-1/4 w-64 h-64 rounded-full opacity-15 blur-3xl pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #a855f7, #06b6d4)', animationDelay: '2s' }}
-      />
-
-      {/* Floating particles */}
-      {['🌸', '✨', '🎨', '💫', '🌟'].map((emoji, i) => (
-        <div
-          key={i}
-          className="absolute text-2xl opacity-30 animate-float pointer-events-none select-none"
-          style={{
-            top: `${15 + i * 15}%`,
-            left: `${5 + i * 18}%`,
-            animationDelay: `${i * 0.8}s`,
-            fontSize: `${1 + (i % 3) * 0.4}rem`,
-          }}
-        >
-          {emoji}
-        </div>
-      ))}
-
       <div className="relative section-container text-center z-10">
         {/* Avatar */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="flex justify-center mb-10 sm:mb-12"
+          className="mb-8 flex justify-center sm:mb-10"
         >
           <div className="relative">
             <div
-              className="w-32 h-32 md:w-40 md:h-40 rounded-full animate-pulse-glow flex items-center justify-center overflow-hidden"
-              style={{ border: '4px solid transparent', background: 'linear-gradient(white, white) padding-box, linear-gradient(135deg, #f43f5e, #a855f7) border-box' }}
+              className="flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-[3px] border-rose-200 bg-white shadow-lg shadow-rose-100/60 md:h-36 md:w-36"
             >
               <Image
                 src="/avatar.png"
@@ -81,7 +40,7 @@ export function HeroSection() {
               />
             </div>
             {/* Status badge */}
-            <div className="absolute -bottom-1 -right-1 bg-white dark:bg-neutral-900 rounded-full px-3 py-1 text-xs font-semibold flex items-center gap-1 shadow-lg border border-rose-100 dark:border-rose-900/30">
+            <div className="absolute -bottom-1 -right-2 flex items-center gap-1 rounded-full border border-rose-100 bg-white px-3 py-1 text-xs font-semibold shadow-lg dark:border-rose-900/30 dark:bg-neutral-900">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
               <span className="text-neutral-600 dark:text-neutral-300">활동 중</span>
             </div>
@@ -89,9 +48,8 @@ export function HeroSection() {
         </motion.div>
 
         {/* Greeting */}
-        <motion.div {...fadeInUp} className="mb-5 sm:mb-6">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-rose-50 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800/40">
-            <Sparkles size={14} />
+        <motion.div {...fadeInUp} className="mb-5">
+          <span className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white/80 px-4 py-2 text-sm font-medium text-rose-600 shadow-sm dark:border-rose-800/40 dark:bg-rose-950/30 dark:text-rose-400">
             {PROFILE.university} {PROFILE.major} {PROFILE.year}
           </span>
         </motion.div>
@@ -105,7 +63,7 @@ export function HeroSection() {
         >
           안녕하세요,{' '}
           <span className="gradient-text">{PROFILE.name}</span>
-          입니다 👋
+          입니다
         </motion.h1>
 
         {/* Roles */}
@@ -118,7 +76,7 @@ export function HeroSection() {
           {ROLES.map((role) => (
             <span
               key={role}
-              className="px-4 py-1.5 rounded-full text-sm font-medium glass-card text-neutral-600 dark:text-neutral-300"
+              className="surface-card px-4 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300"
             >
               {role}
             </span>
@@ -130,7 +88,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}
-          className="text-body-lg text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto mb-12 whitespace-pre-line"
+          className="text-body-lg mx-auto mb-10 max-w-2xl whitespace-pre-line text-neutral-600 dark:text-neutral-300"
         >
           {PROFILE.bioShort}
         </motion.p>
@@ -143,18 +101,19 @@ export function HeroSection() {
           className="flex flex-wrap justify-center gap-4 sm:gap-5"
         >
           <button
-            onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="flex min-h-12 items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
-            style={{ background: 'linear-gradient(135deg, #f43f5e, #a855f7)' }}
+            onClick={() =>
+              document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
+            }
+            className="gradient-button flex h-12 items-center gap-2 rounded-full px-8 font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
           >
-            <Mail size={16} />
-            연락하기
+            <FolderKanban size={16} />
+            프로젝트 보기
           </button>
           <a
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex min-h-12 items-center gap-2 px-8 py-3.5 rounded-full font-semibold glass-card text-neutral-700 dark:text-neutral-200 transition-all duration-200 hover:scale-105 hover:shadow-lg border border-rose-100/50 dark:border-rose-900/20"
+            className="surface-card flex h-12 items-center gap-2 rounded-full px-8 font-semibold text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
           >
             <Github size={16} />
             GitHub
@@ -167,7 +126,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-400 hover:text-rose-500 transition-colors animate-bounce-y"
+          className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-neutral-400 transition-colors hover:text-rose-500"
           aria-label="아래로 스크롤"
         >
           <span className="text-xs font-medium">Scroll</span>

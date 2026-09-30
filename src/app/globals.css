@@ -21,7 +21,7 @@
 
   /* Backgrounds */
   --bg-base: #ffffff;
-  --bg-subtle: #fdf2f4;
+  --bg-subtle: #fff7f9;
   --bg-card: #ffffff;
 
   /* Text */
@@ -30,7 +30,7 @@
   --text-muted: #a1a1aa;
 
   /* Border */
-  --border-color: #e4e4e7;
+  --border-color: #f1dfe5;
 }
 
 .dark {
@@ -84,44 +84,104 @@ body {
    TYPOGRAPHY SCALE
    ============================================================ */
 .text-display-1 {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.75rem, 4.6vw, 4rem);
   font-weight: 800;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: 0;
 }
 .text-display-2 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(2.25rem, 3.2vw, 2.75rem);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.16;
   letter-spacing: 0;
 }
 .text-heading-1 {
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(2.375rem, 3vw, 2.75rem);
   font-weight: 700;
   line-height: 1.2;
 }
 .text-heading-2 {
-  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
-  font-weight: 600;
+  font-size: clamp(1.375rem, 2vw, 1.625rem);
+  font-weight: 700;
   line-height: 1.3;
 }
 .text-body-lg {
-  font-size: 1.125rem;
-  line-height: 1.8;
+  font-size: 1.0625rem;
+  line-height: 1.7;
 }
 
 /* ============================================================
    UTILITY
    ============================================================ */
 .section-container {
-  max-width: 1440px;
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
 .section-padding {
-  padding-top: 7.5rem;
-  padding-bottom: 7.5rem;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  scroll-margin-top: 5rem;
+}
+
+.section-heading {
+  margin-bottom: 4rem;
+  text-align: left;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--primary-500);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.section-description {
+  max-width: 42rem;
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.section-line {
+  width: 4rem;
+  height: 0.25rem;
+  margin-top: 1.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+}
+
+.surface-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 50px rgba(24, 24, 27, 0.05);
+}
+
+.dark .surface-card {
+  background: rgba(24, 24, 27, 0.92);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-button {
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+}
+
+.soft-gradient-surface {
+  background:
+    radial-gradient(circle at top left, rgba(244, 63, 94, 0.12), transparent 34rem),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.1), transparent 30rem),
+    var(--bg-base);
+}
+
+.subtle-section {
+  background: var(--bg-subtle);
 }
 
 @media (max-width: 1024px) {
@@ -132,7 +192,7 @@ body {
 
 @media (max-width: 640px) {
   .text-display-1 {
-    font-size: clamp(2.25rem, 13vw, 3.25rem);
+    font-size: clamp(2.5rem, 12vw, 3.25rem);
     line-height: 1.12;
   }
 
@@ -154,8 +214,12 @@ body {
   }
 
   .section-padding {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .section-heading {
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -169,11 +233,12 @@ body {
 
 /* Glass card */
 .glass-card {
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.82);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(244,63,94,0.12);
+  border: 1px solid var(--border-color);
   border-radius: 1.25rem;
+  box-shadow: 0 18px 50px rgba(24, 24, 27, 0.05);
 }
 .dark .glass-card {
   background: rgba(24,24,27,0.7);

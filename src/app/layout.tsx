@@ -10,14 +10,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: '이하은 | 홍익대학교 포트폴리오',
+  title: '이하은 | Software Engineer Portfolio',
   description:
-    '홍익대학교 이하은의 개인 포트폴리오입니다. 창의적인 아이디어와 열정으로 가득 찬 대학생의 이야기를 담았습니다.',
-  keywords: ['이하은', '홍익대학교', '포트폴리오', 'Haeun Lee', 'Hongik University'],
+    'AI와 웹 기술을 활용해 실제 문제를 해결하는 이하은의 소프트웨어 개발 포트폴리오입니다.',
+  keywords: ['이하은', '홍익대학교', '포트폴리오', 'AI', 'Software Engineer', 'Haeun Lee'],
   authors: [{ name: '이하은' }],
   openGraph: {
-    title: '이하은 | 홍익대학교 포트폴리오',
-    description: '홍익대학교 이하은의 개인 포트폴리오',
+    title: '이하은 | Software Engineer Portfolio',
+    description: 'AI와 웹 기술을 활용해 실제 문제를 해결하는 소프트웨어 개발 포트폴리오',
     type: 'website',
     locale: 'ko_KR',
   },

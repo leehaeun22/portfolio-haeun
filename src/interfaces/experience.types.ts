@@ -1,6 +1,6 @@
 // Experience type definitions
 
-export type ExperienceType = 'education' | 'activity' | 'award';
+export type ExperienceType = 'education' | 'research' | 'activity' | 'award';
 
 export interface ExperienceItem {
   id: string;
