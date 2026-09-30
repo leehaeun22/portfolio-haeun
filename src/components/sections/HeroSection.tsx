@@ -55,7 +55,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mb-6 h-auto max-w-4xl text-display-1 leading-[1.16]"
+          className="mb-7 h-auto max-w-4xl text-display-1 leading-[1.16]"
         >
           안녕하세요,{' '}
           <span className="gradient-text">{PROFILE.name}</span>
@@ -67,12 +67,12 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="mb-5 flex flex-wrap items-center justify-center gap-3"
+          className="mb-6 flex flex-wrap items-center justify-center gap-3"
         >
           {ROLES.map((role) => (
             <span
               key={role}
-              className="surface-card inline-flex min-h-8 items-center rounded-full px-3 py-1.5 text-[15px] font-medium leading-none text-neutral-600 dark:text-neutral-300"
+              className="surface-card inline-flex min-h-10 min-w-12 items-center justify-center rounded-full px-4 py-2 text-[15px] font-medium leading-[1.2] text-neutral-600 dark:text-neutral-300"
             >
               {role}
             </span>
@@ -84,7 +84,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}
-          className="mx-auto mb-7 max-w-[680px] text-center text-[18px] leading-[1.6] text-neutral-600 dark:text-neutral-300"
+          className="mx-auto mb-8 max-w-[680px] text-center text-[18px] leading-[1.6] text-neutral-600 dark:text-neutral-300"
         >
           {PROFILE.bioShort}
         </motion.p>
@@ -100,7 +100,7 @@ export function HeroSection() {
             onClick={() =>
               document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="gradient-button inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 text-base font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
+            className="gradient-button inline-flex min-h-14 items-center justify-center gap-2.5 rounded-full px-7 py-3.5 text-base font-semibold leading-[1.2] text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
           >
             <FolderKanban size={18} />
             프로젝트 보기
@@ -109,7 +109,7 @@ export function HeroSection() {
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="surface-card inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 text-base font-semibold text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
+            className="surface-card inline-flex min-h-14 items-center justify-center gap-2.5 rounded-full px-7 py-3.5 text-base font-semibold leading-[1.2] text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
           >
             <Github size={18} />
             GitHub

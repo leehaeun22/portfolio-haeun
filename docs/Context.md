@@ -99,6 +99,7 @@
 - [x] 2026-09-30: Research 섹션 추가 및 Resume 버튼을 `/resume` 정적 페이지로 연결하여 깨진 PDF 링크 제거
 - [x] 2026-09-30: 프로덕션 빌드 검증 — `/`, `/resume`, `/projects/rawd`, `/projects/ieum-chat`, `/projects/smart-parking-manager`, `/projects/urop-fake-web` 정적 생성 확인
 - [x] 2026-09-30: Hero/Header 1차 수정 — Hero 세로 간격 명시, Scroll indicator 제거, Resume 버튼 min-width/padding 및 Header 64~68px 정렬 보정
+- [x] 2026-09-30: Hero CTA/Role 태그 2차 수정 — role tag min-height/padding 확대, CTA 버튼 min-height 56px 및 gap/line-height 보정
 
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
