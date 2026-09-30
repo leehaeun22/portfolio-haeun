@@ -114,6 +114,8 @@
 
 - [x] 2026-10-01: Skills 섹션 카드형 grid 전환 — 그룹 카드 구조 제거, 21개 기술을 독립 카드로 표시하고 resume 기술 목록 호환 수정
 
+- [x] 2026-10-01: Projects 섹션 2×2 미니멀 카드 전환 — Featured/GitHub/성과/역할 박스 제거, 프로젝트 이미지·핵심 설명·역할·대표 기술·텍스트 CTA 구조로 단순화
+
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
 - [x] 2026-09-30: GitHub 새 저장소 `leehaeun22/portfolio-haeun` 생성 및 main 브랜치 push 완료
