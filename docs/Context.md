@@ -97,7 +97,8 @@
 
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
-- [ ] 2026-09-30: Vercel 계정 인증 및 대상 GitHub 저장소 확인 후 main 자동 배포 연결 (현재 origin: rlawogh1005/money)
+- [x] 2026-09-30: GitHub 새 저장소 `leehaeun22/portfolio-haeun` 생성 및 main 브랜치 push 완료
+- [x] 2026-09-30: Vercel 프로젝트 `portfolio-haeun` 생성, GitHub 저장소 연결, Production 배포 완료 (`https://portfolio-haeun-orpin.vercel.app`)
 - [ ] SEO 최적화 (메타태그, OG, JSON-LD, sitemap)
 - [ ] 성능 최적화 (Lighthouse 90+ 달성)
 - [ ] Vercel 배포 및 커스텀 도메인 연결
@@ -109,7 +110,6 @@
 
 | Priority | Target               | Task                                                                     | Blocker / Requirement          |
 | :------- | :------------------- | :----------------------------------------------------------------------- | :----------------------------- |
-| **P0**   | Vercel 배포          | GitHub 저장소 연결 및 main Production 배포, 고정 URL 확인                | Vercel 로그인 및 대상 저장소 확인 대기 |
 | **P0**   | 반응형 검증          | 주요 섹션의 데스크톱/태블릿/모바일 레이아웃 시각 검증                    | 로컬 빌드/브라우저 확인 필요   |
 | **P1**   | Contact 연동         | Contact Form API 및 이메일 발송 연동                                     | 이메일 서비스 설정 필요        |
 | **P2**   | SEO 최적화           | 메타태그, OG, JSON-LD, sitemap 점검                                      | 콘텐츠 최종 확정 필요          |
@@ -123,7 +123,7 @@
 | RSK-1 | 포트폴리오 콘텐츠(프로젝트 데이터) 부재   | High   | Medium      | 더미 데이터로 먼저 구현 후 실제 데이터 교체              | Open      |
 | RSK-2 | 이미지 자산 부족                          | Medium | High        | AI 이미지 생성 도구 또는 Unsplash로 대체                 | Open      |
 | RSK-3 | 카드/폼 반응형 시각 회귀 가능성           | Medium | Medium      | 빌드 검증 후 주요 뷰포트에서 브라우저 시각 확인          | Mitigating |
-| RSK-4 | Vercel 미인증 및 배포 저장소 미확정       | High   | High        | 계정 인증과 현재 origin 사용 여부 확인 후 연결·배포     | Open      |
+| RSK-4 | Vercel 미인증 및 배포 저장소 미확정       | High   | High        | 계정 인증, 새 GitHub 저장소 생성, Vercel 연결 및 Production 배포 완료 | Resolved  |
 
 ---
 
