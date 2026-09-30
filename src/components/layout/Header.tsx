@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Research', href: '#research' },
   { label: 'Experience', href: '#experience' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -121,7 +122,7 @@ export function Header() {
 
               {/* Resume download */}
               <a
-                href="/resume.pdf"
+                href="/resume"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="gradient-button hidden h-9 items-center gap-2 whitespace-nowrap rounded-full px-4 text-sm font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30 md:flex"
@@ -166,8 +167,7 @@ export function Header() {
                 </button>
               ))}
               <a
-                href="/resume.pdf"
-                download
+                href="/resume"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="gradient-button mt-2 flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white"
