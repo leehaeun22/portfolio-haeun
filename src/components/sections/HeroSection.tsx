@@ -8,9 +8,9 @@ import { fadeInUp } from '@/utils/animations';
 
 const ROLES = ['AI', 'Software Engineer', 'Web Developer'];
 const ROLE_TAG_WIDTH: Record<string, string> = {
-  AI: 'min-w-20 px-6',
-  'Software Engineer': 'px-7',
-  'Web Developer': 'px-7',
+  AI: 'min-w-[90px]',
+  'Software Engineer': '',
+  'Web Developer': '',
 };
 
 export function HeroSection() {
@@ -72,12 +72,12 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="mb-6 flex flex-wrap items-center justify-center gap-3"
+          className="mb-6 flex flex-wrap items-center justify-center gap-3.5"
         >
           {ROLES.map((role) => (
             <span
               key={role}
-              className={`surface-card inline-flex min-h-10 w-fit flex-shrink-0 box-border items-center justify-center whitespace-nowrap rounded-full py-2 text-[15px] font-medium leading-[1.2] text-neutral-600 dark:text-neutral-300 ${ROLE_TAG_WIDTH[role]}`}
+              className={`surface-card inline-flex h-[54px] w-fit flex-shrink-0 box-border items-center justify-center whitespace-nowrap rounded-[20px] px-6 text-[21px] font-medium leading-none text-neutral-600 dark:text-neutral-300 ${ROLE_TAG_WIDTH[role]}`}
             >
               {role}
             </span>
@@ -105,18 +105,18 @@ export function HeroSection() {
             onClick={() =>
               document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="gradient-button inline-flex min-h-16 min-w-[230px] flex-shrink-0 box-border items-center justify-center gap-3 rounded-full px-[30px] py-3.5 text-base font-semibold leading-[1.2] text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
+            className="gradient-button inline-flex h-[60px] w-auto flex-shrink-0 box-border items-center justify-center gap-2.5 rounded-[20px] px-7 text-[19px] font-semibold leading-none whitespace-nowrap text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
           >
-            <FolderKanban size={18} />
+            <FolderKanban size={20} />
             프로젝트 보기
           </button>
           <a
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="surface-card inline-flex min-h-16 min-w-[175px] flex-shrink-0 box-border items-center justify-center gap-3 rounded-full px-7 py-3.5 text-base font-semibold leading-[1.2] text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
+            className="surface-card inline-flex h-[60px] w-auto flex-shrink-0 box-border items-center justify-center gap-2.5 rounded-[20px] px-7 text-[19px] font-semibold leading-none whitespace-nowrap text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
           >
-            <Github size={18} />
+            <Github size={21} />
             GitHub
           </a>
         </motion.div>
