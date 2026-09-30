@@ -124,6 +124,7 @@
 
 - [x] 2026-10-01: 메인 페이지 구조 정리 — Research 섹션/내비게이션 제거, Experience를 Projects 다음으로 유지, Awards 섹션 추가 및 Experience 3개 항목으로 compact timeline 재구성
 
+- [x] 2026-10-01: Experience/Awards ??? ?? ? ?? ?? 3?, ?? 6?, Publications 3?? ???? Awards & Honors/?? ?? ??? ??
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
 - [x] 2026-09-30: GitHub 새 저장소 `leehaeun22/portfolio-haeun` 생성 및 main 브랜치 push 완료
@@ -166,4 +167,3 @@
 | `UI_MOBILE_FIRST`      | `true`  | 모바일 퍼스트 반응형 디자인                                                                    |
 | `FLAG_NO_CMS`          | `true`  | CMS 대시보드(Internal) 코드 생성을 현재 단계에서 차단                                         |
 | `DARK_MODE`            | `true`  | 다크 모드 지원 필수                                                                            |
-- [x] 2026-10-01: Experience ?? ??/?? ?? ?? ??? ? ??????, ?????, SE Lab ????? 3? ???? ???? RAWD/UROP ?? ???? ?? ??

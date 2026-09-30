@@ -1,4 +1,4 @@
-// Award type definitions
+// Award and publication type definitions
 
 export interface AwardItem {
   id: string;
@@ -6,4 +6,12 @@ export interface AwardItem {
   organization: string;
   date: string;
   description: string;
+}
+
+export interface PublicationItem {
+  id: string;
+  title: string;
+  conference: string;
+  date: string;
+  award?: string;
 }
