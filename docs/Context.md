@@ -102,6 +102,7 @@
 - [x] 2026-09-30: Hero CTA/Role 태그 2차 수정 — role tag min-height/padding 확대, CTA 버튼 min-height 56px 및 gap/line-height 보정
 - [x] 2026-09-30: Hero Role/CTA 가로폭 보정 — AI tag min-width 80px, role tag 좌우 padding 확대, 프로젝트/GitHub 버튼 min-width 및 flex-shrink 보정
 - [x] 2026-09-30: Hero 도형 비율 재조정 — role tag 54px/21px로 확대, CTA는 width auto/60px/20px radius로 축소
+- [x] 2026-09-30: Hero CTA 추가 축소 — 프로젝트/GitHub 버튼을 54px 높이, 18px 글자, 18px radius로 조정
 
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과

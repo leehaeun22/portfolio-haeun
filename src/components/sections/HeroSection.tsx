@@ -105,18 +105,18 @@ export function HeroSection() {
             onClick={() =>
               document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="gradient-button inline-flex h-[60px] w-auto flex-shrink-0 box-border items-center justify-center gap-2.5 rounded-[20px] px-7 text-[19px] font-semibold leading-none whitespace-nowrap text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
+            className="gradient-button inline-flex h-[54px] w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-[18px] px-6 text-[18px] font-semibold leading-none whitespace-nowrap text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
           >
-            <FolderKanban size={20} />
+            <FolderKanban size={19} />
             프로젝트 보기
           </button>
           <a
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="surface-card inline-flex h-[60px] w-auto flex-shrink-0 box-border items-center justify-center gap-2.5 rounded-[20px] px-7 text-[19px] font-semibold leading-none whitespace-nowrap text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
+            className="surface-card inline-flex h-[54px] w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-[18px] px-6 text-[18px] font-semibold leading-none whitespace-nowrap text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
           >
-            <Github size={21} />
+            <Github size={20} />
             GitHub
           </a>
         </motion.div>
