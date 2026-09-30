@@ -104,6 +104,8 @@
 - [x] 2026-09-30: Hero 도형 비율 재조정 — role tag 54px/21px로 확대, CTA는 width auto/60px/20px radius로 축소
 - [x] 2026-09-30: Hero CTA 추가 축소 — 프로젝트/GitHub 버튼을 54px 높이, 18px 글자, 18px radius로 조정
 
+- [x] 2026-09-30: Hero 보조 요소 compact 재정리 — 역할 태그를 40px/16px pill badge로 축소하고 CTA 버튼을 48px/16px compact button으로 정리, 큰 min-width/height/padding 제거
+
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
 - [x] 2026-09-30: GitHub 새 저장소 `leehaeun22/portfolio-haeun` 생성 및 main 브랜치 push 완료

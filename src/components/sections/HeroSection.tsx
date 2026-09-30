@@ -7,11 +7,6 @@ import { PROFILE } from '@/constants/profile';
 import { fadeInUp } from '@/utils/animations';
 
 const ROLES = ['AI', 'Software Engineer', 'Web Developer'];
-const ROLE_TAG_WIDTH: Record<string, string> = {
-  AI: 'min-w-[90px]',
-  'Software Engineer': '',
-  'Web Developer': '',
-};
 
 export function HeroSection() {
   return (
@@ -60,7 +55,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mb-7 h-auto max-w-4xl text-display-1 leading-[1.16]"
+          className="mb-5 h-auto max-w-4xl text-display-1 leading-[1.16]"
         >
           안녕하세요,{' '}
           <span className="gradient-text">{PROFILE.name}</span>
@@ -72,12 +67,12 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="mb-6 flex flex-wrap items-center justify-center gap-3.5"
+          className="mb-5 flex flex-wrap items-center justify-center gap-3"
         >
           {ROLES.map((role) => (
             <span
               key={role}
-              className={`surface-card inline-flex h-[54px] w-fit flex-shrink-0 box-border items-center justify-center whitespace-nowrap rounded-[20px] px-6 text-[21px] font-medium leading-none text-neutral-600 dark:text-neutral-300 ${ROLE_TAG_WIDTH[role]}`}
+              className="inline-flex h-10 w-auto flex-shrink-0 box-border items-center justify-center whitespace-nowrap rounded-full border border-rose-100 bg-white/80 px-4 text-[16px] font-medium leading-none text-neutral-700 shadow-[0_8px_24px_rgba(24,24,27,0.035)] dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-200"
             >
               {role}
             </span>
@@ -89,7 +84,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}
-          className="mx-auto mb-8 max-w-[680px] text-center text-[18px] leading-[1.6] text-neutral-600 dark:text-neutral-300"
+          className="mx-auto mb-6 max-w-[680px] text-center text-[18px] leading-[1.6] text-neutral-600 dark:text-neutral-300"
         >
           {PROFILE.bioShort}
         </motion.p>
@@ -99,24 +94,24 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.55 }}
-          className="flex flex-wrap items-center justify-center gap-4"
+          className="flex flex-wrap items-center justify-center gap-3"
         >
           <button
             onClick={() =>
               document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="gradient-button inline-flex h-[54px] w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-[18px] px-6 text-[18px] font-semibold leading-none whitespace-nowrap text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
+            className="gradient-button inline-flex h-12 w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-2xl px-5 text-base font-semibold leading-none whitespace-nowrap text-white transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
           >
-            <FolderKanban size={19} />
+            <FolderKanban size={18} />
             프로젝트 보기
           </button>
           <a
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="surface-card inline-flex h-[54px] w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-[18px] px-6 text-[18px] font-semibold leading-none whitespace-nowrap text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
+            className="inline-flex h-12 w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-2xl border border-rose-100 bg-white px-5 text-base font-semibold leading-none whitespace-nowrap text-neutral-700 shadow-[0_10px_28px_rgba(24,24,27,0.055)] transition-all duration-200 hover:scale-105 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200"
           >
-            <Github size={20} />
+            <Github size={18} />
             GitHub
           </a>
         </motion.div>
