@@ -118,6 +118,8 @@
 
 - [x] 2026-10-01: Projects 항목 교체 — UROP Fake Web Research 제거, Local-Code-Wiki-RAG 카드와 상세 라우트 추가
 
+- [x] 2026-10-01: Projects 카드 compact 보정 — 상단 설명 제거, 이미지 영역 180~200px로 축소, 카드 하단 clipping 방지와 태그 4개 제한 적용
+
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
 - [x] 2026-09-30: GitHub 새 저장소 `leehaeun22/portfolio-haeun` 생성 및 main 브랜치 push 완료
