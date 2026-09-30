@@ -75,8 +75,8 @@ export default function ResumePage() {
                     className="border-b border-neutral-200 pb-5 last:border-b-0 last:pb-0 dark:border-neutral-800"
                   >
                     <p className="text-xs font-semibold text-neutral-500">{item.period}</p>
-                    <h3 className="mt-1 text-lg font-bold">{item.organization}</h3>
-                    <p className="text-sm font-semibold text-rose-500">{item.role}</p>
+                    <h3 className="mt-1 text-lg font-bold">{item.title}</h3>
+                    <p className="text-sm font-semibold text-rose-500">{item.subtitle}</p>
                     <p className="mt-2 text-sm leading-[1.7] text-neutral-600 dark:text-neutral-300">
                       {item.description}
                     </p>
