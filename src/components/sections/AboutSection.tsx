@@ -111,7 +111,7 @@ export function AboutSection() {
               initial="initial"
               whileInView="whileInView"
               viewport={{ once: true }}
-              className="grid grid-cols-3 gap-4"
+              className="mt-5 grid grid-cols-3 gap-4"
             >
               {STATS.map(({ value, label }) => (
                 <motion.div key={label} variants={staggerItem} className="surface-card p-5 text-center">

@@ -106,6 +106,8 @@
 
 - [x] 2026-09-30: Hero 보조 요소 compact 재정리 — 역할 태그를 40px/16px pill badge로 축소하고 CTA 버튼을 48px/16px compact button으로 정리, 큰 min-width/height/padding 제거
 
+- [x] 2026-09-30: About Me 부분 수정 — 전공을 소프트웨어융합과로 변경하고 하단 통계 카드 그룹에 mt-5 여백 추가
+
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
 - [x] 2026-09-30: GitHub 새 저장소 `leehaeun22/portfolio-haeun` 생성 및 main 브랜치 push 완료

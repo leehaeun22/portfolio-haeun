@@ -4,7 +4,7 @@ export const PROFILE = {
   name: '이하은',
   nameEn: 'Lee Haeun',
   university: '홍익대학교',
-  major: '컴퓨터공학과',
+  major: '소프트웨어융합과',
   year: '재학 중',
   email: 'haeun@example.com',
   github: 'https://github.com/leehaeun22',
