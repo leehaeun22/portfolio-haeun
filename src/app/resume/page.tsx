@@ -54,21 +54,14 @@ export default function ResumePage() {
           <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <section className="surface-card p-7">
               <h2 className="text-heading-2">Skills</h2>
-              <div className="mt-5 space-y-5">
-                {SKILLS.map((category) => (
-                  <div key={category.category}>
-                    <h3 className="text-sm font-bold text-rose-500">{category.category}</h3>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {category.skills.map((skill) => (
-                        <span
-                          key={skill.name}
-                          className="rounded-full border border-rose-100 px-3 py-1 text-xs font-semibold text-neutral-700 dark:border-neutral-800 dark:text-neutral-200"
-                        >
-                          {skill.name}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {SKILLS.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className="rounded-full border border-rose-100 px-3 py-1 text-xs font-semibold text-neutral-700 dark:border-neutral-800 dark:text-neutral-200"
+                  >
+                    {skill.name}
+                  </span>
                 ))}
               </div>
             </section>

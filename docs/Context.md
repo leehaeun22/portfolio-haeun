@@ -112,6 +112,8 @@
 
 - [x] 2026-10-01: Skills 섹션 compact 재구성 — 제목을 기술 스택으로 변경, 설명/숙련도 라벨/Collaboration 제거, 4개 카테고리 chip형 아이콘 기술 목록으로 단순화
 
+- [x] 2026-10-01: Skills 섹션 카드형 grid 전환 — 그룹 카드 구조 제거, 21개 기술을 독립 카드로 표시하고 resume 기술 목록 호환 수정
+
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
 - [x] 2026-09-30: GitHub 새 저장소 `leehaeun22/portfolio-haeun` 생성 및 main 브랜치 push 완료
