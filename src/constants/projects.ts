@@ -63,26 +63,26 @@ export const PROJECTS: ProjectData[] = [
     featured: false,
   },
   {
-    id: 'urop-fake-web',
-    slug: 'urop-fake-web',
-    title: 'UROP Fake Web Research',
-    subtitle: 'Hybrid RL 기반 웹 탐색 메커니즘 연구',
-    period: '2025 – 2026',
-    team: 'Research Project',
-    role: 'Observation · Action · Reward Design · Experiment',
+    id: 'local-code-wiki-rag',
+    slug: 'local-code-wiki-rag',
+    title: 'Local-Code-Wiki-RAG',
+    subtitle: 'RAG 기반 코드베이스 문서화 및 질의응답 플랫폼',
+    period: '2025',
+    team: 'Personal Project',
+    role: 'Full Stack · AI Integration',
     description:
-      'Fake Web 환경에서 agent의 웹 탐색 방식과 Hybrid RL 구조를 연구하는 프로젝트',
+      'GitHub 저장소를 분석해 코드 문서를 생성하고, RAG 챗봇으로 코드베이스 이해를 돕는 개발자 온보딩 플랫폼',
     longDescription:
-      'UROP Fake Web Research는 실제 웹 탐색 문제를 단순화한 환경에서 observation, action, reward 설계가 agent 행동에 미치는 영향을 실험한 프로젝트입니다. PPO와 DQN 기반 접근을 비교하며 RAWD 연구 방향과 연결했습니다.',
-    tags: ['PPO', 'DQN', 'Hybrid RL', 'Python'],
-    outcomes: ['웹 탐색 action 설계', 'reward 구조 실험', 'RAWD 연구 방향 검토'],
-    category: 'Research',
-    githubUrl: 'https://github.com/leehaeun22',
+      'Local-Code-Wiki-RAG는 GitHub 저장소의 소스 코드를 분석해 코드베이스 문서를 자동 생성하고, RAG 기반 챗봇을 통해 개발자가 프로젝트 구조와 구현 흐름을 빠르게 이해할 수 있도록 돕는 개발자 온보딩 플랫폼입니다.',
+    tags: ['React', 'TypeScript', 'FastAPI', 'Python', 'ChromaDB'],
+    outcomes: ['코드 문서 자동 생성', 'RAG 기반 질의응답', '개발자 온보딩 지원'],
+    category: 'AI / Developer Tool',
+    githubUrl: 'https://github.com/leehaeun22/Local-Code-Wiki-RAG',
     liveUrl: '',
-    detailUrl: '/projects/urop-fake-web',
+    detailUrl: '/projects/local-code-wiki-rag',
     featured: false,
   },
 ];
 
-export const PROJECT_CATEGORIES = ['All', 'AI', 'Web', 'Research'] as const;
+export const PROJECT_CATEGORIES = ['All', 'AI', 'Web', 'Research', 'Developer Tool'] as const;
 export type ProjectCategory = (typeof PROJECT_CATEGORIES)[number];
