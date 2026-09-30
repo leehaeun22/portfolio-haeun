@@ -13,12 +13,6 @@ const INFO_CARDS = [
   { icon: UserRound, label: 'Role', value: 'Software Engineer' },
 ];
 
-const STATS = [
-  { value: '4+', label: 'Projects' },
-  { value: '29', label: 'Test Defects' },
-  { value: '20', label: 'Detected' },
-];
-
 function SectionTitle() {
   return (
     <motion.div {...fadeInLeft} className="section-heading">
@@ -86,7 +80,7 @@ export function AboutSection() {
               initial="initial"
               whileInView="whileInView"
               viewport={{ once: true }}
-              className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2"
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2"
             >
               {INFO_CARDS.map(({ icon: Icon, label, value }) => (
                 <motion.div
@@ -101,22 +95,6 @@ export function AboutSection() {
                     <p className="text-xs text-neutral-400">{label}</p>
                     <p className="text-sm font-semibold text-neutral-900 dark:text-white">{value}</p>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="whileInView"
-              viewport={{ once: true }}
-              className="mt-5 grid grid-cols-3 gap-4"
-            >
-              {STATS.map(({ value, label }) => (
-                <motion.div key={label} variants={staggerItem} className="surface-card p-5 text-center">
-                  <p className="gradient-text text-3xl font-bold">{value}</p>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">{label}</p>
                 </motion.div>
               ))}
             </motion.div>
