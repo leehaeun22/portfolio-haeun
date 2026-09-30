@@ -166,3 +166,4 @@
 | `UI_MOBILE_FIRST`      | `true`  | 모바일 퍼스트 반응형 디자인                                                                    |
 | `FLAG_NO_CMS`          | `true`  | CMS 대시보드(Internal) 코드 생성을 현재 단계에서 차단                                         |
 | `DARK_MODE`            | `true`  | 다크 모드 지원 필수                                                                            |
+- [x] 2026-10-01: Experience ?? ??/?? ?? ?? ??? ? ??????, ?????, SE Lab ????? 3? ???? ???? RAWD/UROP ?? ???? ?? ??

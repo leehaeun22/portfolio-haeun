@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Activity, FlaskConical, GraduationCap } from 'lucide-react';
+import { FlaskConical, GraduationCap } from 'lucide-react';
 import { EXPERIENCE } from '@/constants/experience';
 import type { ExperienceType } from '@/interfaces/experience.types';
 import { fadeInUp } from '@/utils/animations';
@@ -16,11 +16,6 @@ const TYPE_CONFIG: Record<ExperienceType, { icon: React.ElementType; dotClass: s
     dotClass:
       'border-purple-300 bg-purple-50 text-purple-500 dark:border-purple-900/50 dark:bg-purple-950/30',
   },
-  activity: {
-    icon: Activity,
-    dotClass:
-      'border-purple-300 bg-purple-50 text-purple-500 dark:border-purple-900/50 dark:bg-purple-950/30',
-  },
 };
 
 export function ExperienceSection() {
@@ -28,11 +23,9 @@ export function ExperienceSection() {
     <section id="experience" className="section-padding subtle-section">
       <div className="section-container">
         <motion.div {...fadeInUp} className="section-heading">
-          <span className="section-eyebrow">Experience</span>
+          <span className="section-eyebrow">EXPERIENCE</span>
           <h2 className="mb-4 text-heading-1 text-neutral-900 dark:text-white">경험과 성장</h2>
-          <p className="section-description">
-            학교, 연구 프로젝트, 개발 경험을 시간순으로 정리했습니다.
-          </p>
+          <p className="section-description">학업과 연구 경험을 시간순으로 정리했습니다.</p>
           <div className="section-line" />
         </motion.div>
 
@@ -59,7 +52,7 @@ export function ExperienceSection() {
                     <Icon size={14} />
                   </div>
 
-                  <div className="surface-card p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/20 dark:hover:shadow-rose-900/10 sm:p-6">
+                  <div className="surface-card px-7 py-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/20 dark:hover:shadow-rose-900/10 sm:px-8 sm:py-6">
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                       <div>
                         <p className="text-xs font-bold uppercase tracking-[0.16em] text-rose-500">
@@ -72,25 +65,29 @@ export function ExperienceSection() {
                           {item.subtitle}
                         </p>
                       </div>
-                      <p className="shrink-0 text-right text-xs font-semibold text-neutral-400">
+                      <p className="shrink-0 text-left text-xs font-semibold text-neutral-400 sm:text-right">
                         {item.period}
                       </p>
                     </div>
 
-                    <p className="mt-3 text-sm leading-[1.6] text-neutral-600 dark:text-neutral-300">
-                      {item.description}
-                    </p>
+                    {item.description ? (
+                      <p className="mt-3 text-sm leading-[1.6] text-neutral-600 dark:text-neutral-300">
+                        {item.description}
+                      </p>
+                    ) : null}
 
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {item.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    {item.tags.length > 0 ? (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {item.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
                 </motion.article>
               );
