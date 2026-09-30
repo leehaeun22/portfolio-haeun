@@ -7,6 +7,11 @@ import { PROFILE } from '@/constants/profile';
 import { fadeInUp } from '@/utils/animations';
 
 const ROLES = ['AI', 'Software Engineer', 'Web Developer'];
+const ROLE_TAG_WIDTH: Record<string, string> = {
+  AI: 'min-w-20 px-6',
+  'Software Engineer': 'px-7',
+  'Web Developer': 'px-7',
+};
 
 export function HeroSection() {
   return (
@@ -72,7 +77,7 @@ export function HeroSection() {
           {ROLES.map((role) => (
             <span
               key={role}
-              className="surface-card inline-flex min-h-10 min-w-12 items-center justify-center rounded-full px-4 py-2 text-[15px] font-medium leading-[1.2] text-neutral-600 dark:text-neutral-300"
+              className={`surface-card inline-flex min-h-10 w-fit flex-shrink-0 box-border items-center justify-center whitespace-nowrap rounded-full py-2 text-[15px] font-medium leading-[1.2] text-neutral-600 dark:text-neutral-300 ${ROLE_TAG_WIDTH[role]}`}
             >
               {role}
             </span>
@@ -100,7 +105,7 @@ export function HeroSection() {
             onClick={() =>
               document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="gradient-button inline-flex min-h-14 items-center justify-center gap-2.5 rounded-full px-7 py-3.5 text-base font-semibold leading-[1.2] text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
+            className="gradient-button inline-flex min-h-16 min-w-[230px] flex-shrink-0 box-border items-center justify-center gap-3 rounded-full px-[30px] py-3.5 text-base font-semibold leading-[1.2] text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
           >
             <FolderKanban size={18} />
             프로젝트 보기
@@ -109,7 +114,7 @@ export function HeroSection() {
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="surface-card inline-flex min-h-14 items-center justify-center gap-2.5 rounded-full px-7 py-3.5 text-base font-semibold leading-[1.2] text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
+            className="surface-card inline-flex min-h-16 min-w-[175px] flex-shrink-0 box-border items-center justify-center gap-3 rounded-full px-7 py-3.5 text-base font-semibold leading-[1.2] text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
           >
             <Github size={18} />
             GitHub
