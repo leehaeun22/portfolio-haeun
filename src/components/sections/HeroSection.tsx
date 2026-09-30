@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowDown, FolderKanban, Github } from 'lucide-react';
+import { FolderKanban, Github } from 'lucide-react';
 import Image from 'next/image';
 import { PROFILE } from '@/constants/profile';
 import { fadeInUp } from '@/utils/animations';
@@ -9,22 +9,18 @@ import { fadeInUp } from '@/utils/animations';
 const ROLES = ['AI', 'Software Engineer', 'Web Developer'];
 
 export function HeroSection() {
-  const handleScrollToAbout = () => {
-    document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section
       id="hero"
-      className="soft-gradient-surface relative flex min-h-screen items-center justify-center overflow-hidden py-28 sm:py-32"
+      className="soft-gradient-surface relative flex min-h-[calc(100vh-4.5rem)] items-center justify-center overflow-hidden px-0 py-24 sm:py-28"
     >
-      <div className="relative section-container text-center z-10">
+      <div className="section-container z-10 flex flex-col items-center text-center">
         {/* Avatar */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="mb-8 flex justify-center sm:mb-10"
+          className="mb-3 flex justify-center"
         >
           <div className="relative">
             <div
@@ -40,15 +36,15 @@ export function HeroSection() {
               />
             </div>
             {/* Status badge */}
-            <div className="absolute -bottom-1 -right-2 flex items-center gap-1 rounded-full border border-rose-100 bg-white px-3 py-1 text-xs font-semibold shadow-lg dark:border-rose-900/30 dark:bg-neutral-900">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <div className="absolute bottom-0 right-0 flex items-center gap-1.5 rounded-full border border-rose-100 bg-white px-2.5 py-1 text-[12px] font-semibold leading-none shadow-lg dark:border-rose-900/30 dark:bg-neutral-900">
+              <span className="h-2 w-2 rounded-full bg-green-400" />
               <span className="text-neutral-600 dark:text-neutral-300">활동 중</span>
             </div>
           </div>
         </motion.div>
 
         {/* Greeting */}
-        <motion.div {...fadeInUp} className="mb-5">
+        <motion.div {...fadeInUp} className="mb-4">
           <span className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white/80 px-4 py-2 text-sm font-medium text-rose-600 shadow-sm dark:border-rose-800/40 dark:bg-rose-950/30 dark:text-rose-400">
             {PROFILE.university} {PROFILE.major} {PROFILE.year}
           </span>
@@ -59,7 +55,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-display-1 mb-6"
+          className="mb-6 h-auto max-w-4xl text-display-1 leading-[1.16]"
         >
           안녕하세요,{' '}
           <span className="gradient-text">{PROFILE.name}</span>
@@ -71,12 +67,12 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="flex flex-wrap justify-center gap-3 mb-8"
+          className="mb-5 flex flex-wrap items-center justify-center gap-3"
         >
           {ROLES.map((role) => (
             <span
               key={role}
-              className="surface-card px-4 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300"
+              className="surface-card inline-flex min-h-8 items-center rounded-full px-3 py-1.5 text-[15px] font-medium leading-none text-neutral-600 dark:text-neutral-300"
             >
               {role}
             </span>
@@ -88,7 +84,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}
-          className="text-body-lg mx-auto mb-10 max-w-2xl whitespace-pre-line text-neutral-600 dark:text-neutral-300"
+          className="mx-auto mb-7 max-w-[680px] text-center text-[18px] leading-[1.6] text-neutral-600 dark:text-neutral-300"
         >
           {PROFILE.bioShort}
         </motion.p>
@@ -98,40 +94,27 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.55 }}
-          className="flex flex-wrap justify-center gap-4 sm:gap-5"
+          className="flex flex-wrap items-center justify-center gap-4"
         >
           <button
             onClick={() =>
               document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="gradient-button flex h-12 items-center gap-2 rounded-full px-8 font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
+            className="gradient-button inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 text-base font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
           >
-            <FolderKanban size={16} />
+            <FolderKanban size={18} />
             프로젝트 보기
           </button>
           <a
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="surface-card flex h-12 items-center gap-2 rounded-full px-8 font-semibold text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
+            className="surface-card inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 text-base font-semibold text-neutral-700 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:text-neutral-200"
           >
-            <Github size={16} />
+            <Github size={18} />
             GitHub
           </a>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.button
-          onClick={handleScrollToAbout}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-neutral-400 transition-colors hover:text-rose-500"
-          aria-label="아래로 스크롤"
-        >
-          <span className="text-xs font-medium">Scroll</span>
-          <ArrowDown size={20} />
-        </motion.button>
       </div>
     </section>
   );

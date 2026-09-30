@@ -68,11 +68,11 @@ export function Header() {
         }`}
       >
         <div className="section-container">
-          <div className="flex h-14 items-center justify-between">
+          <div className="grid h-16 grid-cols-[minmax(110px,1fr)_auto_minmax(150px,1fr)] items-center gap-6 md:h-[68px]">
             {/* Logo */}
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="flex items-center gap-2 group"
+              className="flex items-center justify-start gap-2 group"
               aria-label="홈으로 이동"
             >
               <span className="font-bold text-lg gradient-text transition-all">
@@ -81,7 +81,7 @@ export function Header() {
             </button>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-6" aria-label="메인 네비게이션">
+            <nav className="hidden items-center justify-center gap-6 md:flex" aria-label="메인 네비게이션">
               {NAV_LINKS.map((link) => {
                 const isActive = activeSection === link.href.slice(1);
 
@@ -108,7 +108,7 @@ export function Header() {
             </nav>
 
             {/* Right controls */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-end gap-4">
               {/* Dark mode toggle */}
               {mounted && (
                 <button
@@ -125,10 +125,10 @@ export function Header() {
                 href="/resume"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="gradient-button hidden h-9 items-center gap-2 whitespace-nowrap rounded-full px-4 text-sm font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30 md:flex"
+                className="gradient-button hidden h-11 min-w-[112px] items-center justify-center gap-2 whitespace-nowrap rounded-full px-[18px] text-[15px] font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30 md:inline-flex"
                 aria-label="Resume 열기"
               >
-                <FileDown size={14} />
+                <FileDown size={16} />
                 Resume
               </a>
 
@@ -154,7 +154,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-14 left-0 right-0 z-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl border-b border-rose-100 dark:border-rose-900/20 shadow-xl"
+            className="fixed top-16 left-0 right-0 z-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl border-b border-rose-100 dark:border-rose-900/20 shadow-xl md:top-[68px]"
           >
             <nav className="section-container py-6 flex flex-col gap-4">
               {NAV_LINKS.map((link) => (
@@ -170,9 +170,9 @@ export function Header() {
                 href="/resume"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="gradient-button mt-2 flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white"
+                className="gradient-button mt-2 inline-flex h-11 min-w-[112px] items-center justify-center gap-2 whitespace-nowrap rounded-full px-[18px] text-[15px] font-semibold text-white"
               >
-                <FileDown size={14} />
+                <FileDown size={16} />
                 Resume
               </a>
             </nav>
