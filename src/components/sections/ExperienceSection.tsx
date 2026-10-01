@@ -30,14 +30,16 @@ export function ExperienceSection() {
         <motion.div {...fadeInUp} className="section-heading">
           <span className="section-eyebrow">EXPERIENCE</span>
           <h2 className="mb-4 text-heading-1 text-neutral-900 dark:text-white">경험과 성장</h2>
-          <p className="section-description">학업, 연구, 교내 활동 경험을 시간순으로 정리했습니다.</p>
+          <p className="section-description">
+            학업, 연구, 교내 활동 경험을 시간순으로 정리했습니다.
+          </p>
           <div className="section-line" />
         </motion.div>
 
         <div className="relative mx-auto max-w-5xl">
           <div className="absolute bottom-0 left-4 top-0 w-0.5 rounded-full bg-gradient-to-b from-rose-400 via-purple-400 to-transparent sm:left-5" />
 
-          <div className="space-y-4 pl-12 sm:pl-16">
+          <div className="experience-list flex flex-col gap-4 pl-12 sm:pl-16">
             {EXPERIENCE.map((item, index) => {
               const config = TYPE_CONFIG[item.type];
               const Icon = config.icon;
@@ -57,44 +59,43 @@ export function ExperienceSection() {
                     <Icon size={14} />
                   </div>
 
-                  <div className="surface-card px-7 py-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/20 dark:hover:shadow-rose-900/10 sm:px-8 sm:py-[22px] lg:px-8">
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                      <div className="min-w-0">
-                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-rose-500">
-                          {item.category}
-                        </p>
-                        <h3 className="mt-1.5 text-lg font-bold leading-tight text-neutral-900 dark:text-white sm:text-xl">
-                          {item.title}
-                        </h3>
-                        {item.subtitle ? (
-                          <p className="mt-1 text-sm font-semibold text-neutral-500 dark:text-neutral-400">
-                            {item.subtitle}
-                          </p>
-                        ) : null}
-                      </div>
-                      <p className="shrink-0 text-left text-xs font-semibold text-neutral-400 sm:text-right">
-                        {item.period}
+                  <div className="experience-card surface-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/20 dark:hover:shadow-rose-900/10">
+                    <div className="experience-content min-w-0 space-y-0">
+                      <p className="m-0 text-xs font-bold uppercase tracking-[0.16em] text-rose-500">
+                        {item.category}
                       </p>
+                      <h3 className="m-0 mt-1.5 text-lg font-bold leading-tight text-neutral-900 dark:text-white sm:text-xl">
+                        {item.title}
+                      </h3>
+                      {item.subtitle ? (
+                        <p className="m-0 mt-1.5 text-sm font-semibold leading-snug text-neutral-500 dark:text-neutral-400">
+                          {item.subtitle}
+                        </p>
+                      ) : null}
+
+                      {item.description ? (
+                        <p className="m-0 mt-2 text-sm leading-[1.55] text-neutral-600 dark:text-neutral-300">
+                          {item.description}
+                        </p>
+                      ) : null}
+
+                      {item.tags.length > 0 ? (
+                        <div className="experience-keywords">
+                          {item.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="max-w-full rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium leading-normal text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      ) : null}
                     </div>
 
-                    {item.description ? (
-                      <p className="mt-2.5 text-sm leading-[1.55] text-neutral-600 dark:text-neutral-300">
-                        {item.description}
-                      </p>
-                    ) : null}
-
-                    {item.tags.length > 0 ? (
-                      <div className="mt-3 flex flex-wrap gap-1.5">
-                        {item.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="max-w-full rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    ) : null}
+                    <div className="experience-date shrink-0 text-left text-xs font-semibold leading-relaxed text-neutral-400 sm:text-right">
+                      {item.period}
+                    </div>
                   </div>
                 </motion.article>
               );
