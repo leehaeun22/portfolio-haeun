@@ -7,13 +7,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PROFILE } from '@/constants/profile';
 
 const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Awards', href: '#awards' },
-  { label: 'Contact', href: '#contact' },
-];
+  { label: 'About', id: 'about', href: '#about' },
+  { label: 'Skills', id: 'skills', href: '#skills' },
+  { label: 'Projects', id: 'projects', href: '#projects' },
+  { label: 'Experience', id: 'experience', href: '#experience' },
+  { label: 'Awards', id: 'awards', href: '#awards' },
+  { label: 'Contact', id: 'contact', href: '#contact' },
+] as const;
+
+const NAV_SECTION_IDS = NAV_LINKS.map((link) => link.id);
+const HEADER_OFFSET = 80;
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,29 +33,48 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    const sections = NAV_LINKS.map((link) => document.querySelector(link.href)).filter(
-      (section): section is Element => section !== null,
-    );
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    let ticking = false;
 
-        if (visible?.target.id) {
-          setActiveSection(visible.target.id);
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + HEADER_OFFSET + window.innerHeight * 0.35;
+      const reachedPageBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8;
+      let current = NAV_SECTION_IDS[0];
+
+      NAV_SECTION_IDS.forEach((id) => {
+        const section = document.getElementById(id);
+
+        if (section && section.offsetTop <= scrollPosition) {
+          current = id;
         }
-      },
-      { rootMargin: '-35% 0px -50% 0px', threshold: [0.1, 0.35, 0.6] },
-    );
+      });
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+      setActiveSection(reachedPageBottom ? 'contact' : current);
+      ticking = false;
+    };
+
+    const handleSectionScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveSection);
+        ticking = true;
+      }
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', handleSectionScroll, { passive: true });
+    window.addEventListener('resize', handleSectionScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleSectionScroll);
+      window.removeEventListener('resize', handleSectionScroll);
+    };
   }, []);
 
   const handleNavClick = (href: string) => {
+    const targetId = href.slice(1);
+    setActiveSection(targetId);
     setMobileOpen(false);
-    const el = document.querySelector(href);
+    const el = document.getElementById(targetId);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -83,7 +105,7 @@ export function Header() {
             {/* Desktop Nav */}
             <nav className="hidden items-center justify-center gap-6 md:flex" aria-label="메인 네비게이션">
               {NAV_LINKS.map((link) => {
-                const isActive = activeSection === link.href.slice(1);
+                const isActive = activeSection === link.id;
 
                 return (
                 <button
@@ -161,7 +183,12 @@ export function Header() {
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-left text-base font-medium text-neutral-700 dark:text-neutral-200 hover:text-rose-500 transition-colors py-2 border-b border-neutral-100 dark:border-neutral-800 last:border-0"
+                  className={`text-left text-base font-medium transition-colors py-2 border-b border-neutral-100 dark:border-neutral-800 last:border-0 ${
+                    activeSection === link.id
+                      ? 'text-rose-500 dark:text-rose-400'
+                      : 'text-neutral-700 dark:text-neutral-200 hover:text-rose-500'
+                  }`}
+                  aria-current={activeSection === link.id ? 'true' : undefined}
                 >
                   {link.label}
                 </button>
