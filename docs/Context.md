@@ -173,3 +173,6 @@
 | `UI_MOBILE_FIRST`      | `true`  | 모바일 퍼스트 반응형 디자인                                                                    |
 | `FLAG_NO_CMS`          | `true`  | CMS 대시보드(Internal) 코드 생성을 현재 단계에서 차단                                         |
 | `DARK_MODE`            | `true`  | 다크 모드 지원 필수                                                                            |
+
+## Progress Log
+- [x] 2026-10-01: Hero/About layout refined — rebuilt Hero pills/buttons and About info cards with stable icon/text wrappers, consolidated About intro into one paragraph.

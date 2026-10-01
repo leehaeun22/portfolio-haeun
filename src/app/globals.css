@@ -174,6 +174,340 @@ body {
   min-width: 0;
 }
 
+/* Hero section */
+.hero-section {
+  position: relative;
+  display: flex;
+  min-height: calc(100vh - 4.5rem);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 6rem 0;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-avatar-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.hero-avatar-frame {
+  display: flex;
+  width: 9rem;
+  height: 9rem;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 3px solid var(--primary-200);
+  border-radius: 9999px;
+  background: white;
+  box-shadow: 0 18px 42px rgba(244, 63, 94, 0.18);
+}
+
+.hero-status-badge,
+.hero-pill,
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.hero-status-badge {
+  min-height: 34px;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 26px rgba(24, 24, 27, 0.06);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-secondary);
+}
+
+.hero-status-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #4ade80;
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.14);
+}
+
+.hero-school-row {
+  margin-bottom: 18px;
+}
+
+.hero-pill {
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 9999px;
+  line-height: 1;
+}
+
+.hero-school-pill {
+  border: 1px solid var(--primary-200);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 10px 26px rgba(24, 24, 27, 0.04);
+  color: var(--primary-600);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hero-title {
+  max-width: 64rem;
+  margin-bottom: 22px;
+  line-height: 1.16;
+}
+
+.hero-role-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.hero-role-pill {
+  min-width: 72px;
+  border: 1px solid var(--primary-100);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 8px 24px rgba(24, 24, 27, 0.035);
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.hero-role-pill-ai {
+  min-width: 78px;
+}
+
+.hero-pill-text,
+.hero-button-text {
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.hero-bio {
+  max-width: 680px;
+  margin: 0 auto 26px;
+  color: var(--text-secondary);
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.hero-button {
+  min-height: 56px;
+  gap: 10px;
+  padding: 0 26px;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-1px) scale(1.03);
+}
+
+.hero-button-icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-button-primary {
+  color: white;
+  box-shadow: 0 14px 30px rgba(244, 63, 94, 0.24);
+}
+
+.hero-button-secondary {
+  border: 1px solid var(--border-color);
+  background: white;
+  color: var(--text-secondary);
+  box-shadow: 0 10px 28px rgba(24, 24, 27, 0.055);
+}
+
+.dark .hero-status-badge,
+.dark .hero-school-pill,
+.dark .hero-role-pill,
+.dark .hero-button-secondary {
+  background: rgba(24, 24, 27, 0.88);
+  border-color: #27272a;
+}
+
+/* About section */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about-image-column {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.about-profile-card {
+  display: flex;
+  width: min(100%, 20rem);
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.about-profile-badge {
+  align-self: flex-end;
+  padding: 10px 14px;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(24, 24, 27, 0.08);
+}
+
+.about-profile-name,
+.about-profile-major {
+  margin: 0;
+  line-height: 1.25;
+}
+
+.about-profile-name {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.about-profile-major {
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.about-avatar-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.about-content-column {
+  min-width: 0;
+}
+
+.about-intro-wrap {
+  max-width: 48rem;
+  margin-bottom: 28px;
+}
+
+.about-intro {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.8;
+  overflow-wrap: break-word;
+}
+
+.about-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.about-info-card {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  column-gap: 14px;
+  align-items: center;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+  padding: 18px 22px;
+  box-sizing: border-box;
+}
+
+.about-info-icon {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+}
+
+.about-info-content {
+  min-width: 0;
+}
+
+.about-info-content > * {
+  margin-left: 0;
+}
+
+.about-info-label {
+  margin: 0 0 4px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.about-info-value {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 640px) {
+  .about-info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-avatar-frame {
+    width: 9.75rem;
+    height: 9.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .about-layout {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 2.5rem;
+  }
+}
+
+
 /* Project cards */
 .project-card {
   display: flex;
@@ -594,6 +928,49 @@ body {
 }
 
 @media (max-width: 640px) {
+  .hero-section {
+    min-height: auto;
+    padding: 5.5rem 0;
+  }
+
+  .hero-avatar-frame {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .hero-pill {
+    min-height: 44px;
+    padding: 0 17px;
+  }
+
+  .hero-role-pill {
+    min-width: 72px;
+    font-size: 15px;
+  }
+
+  .hero-button {
+    min-height: 52px;
+    padding: 0 22px;
+  }
+
+  .hero-bio {
+    font-size: 16px;
+  }
+
+  .about-profile-card {
+    width: min(100%, 18rem);
+  }
+
+  .about-intro {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .about-info-card {
+    grid-template-columns: 48px minmax(0, 1fr);
+    padding: 16px 18px;
+  }
+
   .contact-info-item {
     grid-template-columns: 44px minmax(0, 1fr);
     column-gap: 14px;

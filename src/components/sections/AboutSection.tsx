@@ -13,10 +13,13 @@ const INFO_CARDS = [
   { icon: UserRound, label: 'Role', value: 'Software Engineer' },
 ];
 
+const ABOUT_INTRO =
+  'AI와 웹 기술을 활용해 사용자의 개입을 줄이고 반복적인 작업을 자동화하는 시스템에 관심이 있습니다. 강화학습 기반 웹 결함 탐지 프로젝트를 진행하며 모델 설계, 웹 시스템 구현, 실험 및 결과 분석을 함께 경험했고, 문제를 단순히 해결하는 데 그치지 않고 원인을 구조적으로 분석하고 개선하는 과정을 중요하게 생각합니다.';
+
 function SectionTitle() {
   return (
     <motion.div {...fadeInLeft} className="section-heading">
-      <span className="section-eyebrow">About Me</span>
+      <span className="section-eyebrow">ABOUT ME</span>
       <h2 className="text-heading-1 text-neutral-900 dark:text-white">문제를 구조로 이해하는 개발자</h2>
       <p className="section-description">
         AI agent, 웹 시스템, 데이터 흐름을 연결해 반복 작업을 줄이는 서비스에 관심이 있습니다.
@@ -32,68 +35,46 @@ export function AboutSection() {
       <div className="section-container">
         <SectionTitle />
 
-        <div className="grid grid-cols-1 items-center gap-8 xl:grid-cols-[0.9fr_1.1fr] xl:gap-10">
-          {/* Image side */}
-          <motion.div {...scaleIn} className="flex justify-center">
-            <div className="relative">
-              <div
-                className="surface-card relative flex h-64 w-64 items-center justify-center overflow-hidden md:h-72 md:w-72"
-              >
+        <div className="about-layout">
+          <motion.div {...scaleIn} className="about-image-column">
+            <div className="about-profile-card surface-card">
+              <div className="about-profile-badge surface-card">
+                <p className="about-profile-name text-neutral-900 dark:text-white">{PROFILE.name}</p>
+                <p className="about-profile-major text-rose-500">{PROFILE.major}</p>
+              </div>
+
+              <div className="about-avatar-box">
                 <Image
                   src="/avatar.png"
                   alt="이하은 프로필 사진"
                   width={320}
                   height={320}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full rounded-[1rem] object-cover"
                 />
               </div>
-
-              {/* Floating badge */}
-              <motion.div
-                animate={{ y: [-4, 4, -4] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="surface-card absolute -right-4 -top-4 px-5 py-2.5 shadow-lg"
-              >
-                <div className="flex items-center gap-2">
-                  <div>
-                    <p className="text-xs font-bold text-neutral-900 dark:text-white">{PROFILE.name}</p>
-                    <p className="text-xs text-rose-500">{PROFILE.major}</p>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
 
-          {/* Text side */}
-          <div>
-            <motion.div {...fadeInRight} className="space-y-4 mb-8">
-              {PROFILE.bio.split('\n').map((line, i) => (
-                <p key={i} className="text-body-lg text-neutral-600 dark:text-neutral-300">
-                  {line}
-                </p>
-              ))}
+          <div className="about-content-column">
+            <motion.div {...fadeInRight} className="about-intro-wrap">
+              <p className="about-intro text-neutral-600 dark:text-neutral-300">{ABOUT_INTRO}</p>
             </motion.div>
 
-            {/* Info cards */}
             <motion.div
               variants={staggerContainer}
               initial="initial"
               whileInView="whileInView"
               viewport={{ once: true }}
-              className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+              className="about-info-grid"
             >
               {INFO_CARDS.map(({ icon: Icon, label, value }) => (
-                <motion.div
-                  key={label}
-                  variants={staggerItem}
-                  className="surface-card flex items-center gap-3 px-6 py-5"
-                >
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-rose-50 dark:bg-rose-950/30">
-                    <Icon size={16} className="text-rose-500" />
+                <motion.div key={label} variants={staggerItem} className="about-info-card surface-card">
+                  <div className="about-info-icon bg-rose-50 text-rose-500 dark:bg-rose-950/30">
+                    <Icon size={18} />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-neutral-400">{label}</p>
-                    <p className="text-sm font-semibold leading-snug text-neutral-900 dark:text-white">{value}</p>
+                  <div className="about-info-content">
+                    <p className="about-info-label text-neutral-400">{label}</p>
+                    <p className="about-info-value text-neutral-900 dark:text-white">{value}</p>
                   </div>
                 </motion.div>
               ))}
