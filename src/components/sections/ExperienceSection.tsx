@@ -57,7 +57,7 @@ export function ExperienceSection() {
                     <Icon size={14} />
                   </div>
 
-                  <div className="surface-card px-6 py-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/20 dark:hover:shadow-rose-900/10 sm:px-8 sm:py-[22px] lg:px-[30px]">
+                  <div className="surface-card px-7 py-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/20 dark:hover:shadow-rose-900/10 sm:px-8 sm:py-[22px] lg:px-8">
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0">
                         <p className="text-xs font-bold uppercase tracking-[0.16em] text-rose-500">
@@ -88,7 +88,7 @@ export function ExperienceSection() {
                         {item.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
+                            className="max-w-full rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300"
                           >
                             {tag}
                           </span>

@@ -110,12 +110,12 @@ export function ContactSection() {
                 href={href}
                 target={href.startsWith('mailto') ? undefined : '_blank'}
                 rel="noopener noreferrer"
-                className="surface-card group flex items-center gap-4 p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/30 dark:hover:shadow-rose-900/20"
+                className="surface-card group flex items-center gap-4 px-6 py-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/30 dark:hover:shadow-rose-900/20"
               >
                 <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-rose-50 transition-transform group-hover:scale-110 dark:bg-rose-950/30">
                   <Icon size={20} className="text-rose-500" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
                   <p className="text-sm font-semibold text-neutral-900 dark:text-white">{value}</p>
                 </div>
@@ -124,7 +124,7 @@ export function ContactSection() {
 
             {/* Availability note */}
             <div
-              className="surface-card p-5 text-sm"
+              className="surface-card px-6 py-5 text-sm"
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
@@ -164,7 +164,7 @@ export function ContactSection() {
               <form
                 onSubmit={handleSubmit}
                 noValidate
-                className="surface-card space-y-6 p-6 sm:p-8 xl:p-10"
+                className="surface-card space-y-6 px-7 py-6 sm:px-8 sm:py-8 xl:px-10"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>

@@ -52,7 +52,7 @@ export function AboutSection() {
               <motion.div
                 animate={{ y: [-4, 4, -4] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="surface-card absolute -right-4 -top-4 px-4 py-2 shadow-lg"
+                className="surface-card absolute -right-4 -top-4 px-5 py-2.5 shadow-lg"
               >
                 <div className="flex items-center gap-2">
                   <div>
@@ -86,14 +86,14 @@ export function AboutSection() {
                 <motion.div
                   key={label}
                   variants={staggerItem}
-                  className="surface-card flex items-center gap-3 p-5"
+                  className="surface-card flex items-center gap-3 px-6 py-5"
                 >
                   <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-rose-50 dark:bg-rose-950/30">
                     <Icon size={16} className="text-rose-500" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-xs text-neutral-400">{label}</p>
-                    <p className="text-sm font-semibold text-neutral-900 dark:text-white">{value}</p>
+                    <p className="text-sm font-semibold leading-snug text-neutral-900 dark:text-white">{value}</p>
                   </div>
                 </motion.div>
               ))}

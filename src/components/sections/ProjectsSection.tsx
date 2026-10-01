@@ -42,7 +42,7 @@ export function ProjectsSection() {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 ) : (
-                  <div className="flex h-full items-center justify-center px-5 text-center">
+                  <div className="flex h-full items-center justify-center px-6 text-center">
                     <div>
                       <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-xl bg-white/80 text-rose-500 shadow-sm dark:bg-neutral-900/80">
                         <Layers3 size={17} />
@@ -58,7 +58,7 @@ export function ProjectsSection() {
                 )}
               </div>
 
-              <div className="flex flex-1 flex-col px-7 pb-[22px] pt-5 sm:px-8">
+              <div className="flex flex-1 flex-col px-8 pb-[22px] pt-5 sm:px-9">
                 <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-rose-500">
                   {project.category} · {project.period}
                 </p>
@@ -85,7 +85,7 @@ export function ProjectsSection() {
                   {project.tags.slice(0, 4).map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full bg-rose-50 px-2.5 py-1 text-[11px] font-medium text-rose-600 dark:bg-rose-950/30 dark:text-rose-300"
+                      className="max-w-full rounded-full bg-rose-50 px-3 py-1 text-[11px] font-medium text-rose-600 dark:bg-rose-950/30 dark:text-rose-300"
                     >
                       {tag}
                     </span>

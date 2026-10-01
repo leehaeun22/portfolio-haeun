@@ -72,7 +72,7 @@ export function HeroSection() {
           {ROLES.map((role) => (
             <span
               key={role}
-              className="inline-flex h-10 w-auto flex-shrink-0 box-border items-center justify-center whitespace-nowrap rounded-full border border-rose-100 bg-white/80 px-4 text-[16px] font-medium leading-none text-neutral-700 shadow-[0_8px_24px_rgba(24,24,27,0.035)] dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-200"
+              className="inline-flex h-10 max-w-full w-auto flex-shrink-0 box-border items-center justify-center whitespace-nowrap rounded-full border border-rose-100 bg-white/80 px-5 text-[16px] font-medium leading-none text-neutral-700 shadow-[0_8px_24px_rgba(24,24,27,0.035)] dark:border-neutral-800 dark:bg-neutral-900/80 dark:text-neutral-200"
             >
               {role}
             </span>
@@ -100,7 +100,7 @@ export function HeroSection() {
             onClick={() =>
               document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
             }
-            className="gradient-button inline-flex h-12 w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-2xl px-5 text-base font-semibold leading-none whitespace-nowrap text-white transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
+            className="gradient-button inline-flex h-12 max-w-full w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-2xl px-6 text-base font-semibold leading-none whitespace-nowrap text-white transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-rose-200/50 dark:hover:shadow-rose-900/30"
           >
             <FolderKanban size={18} />
             프로젝트 보기
@@ -109,7 +109,7 @@ export function HeroSection() {
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-2xl border border-rose-100 bg-white px-5 text-base font-semibold leading-none whitespace-nowrap text-neutral-700 shadow-[0_10px_28px_rgba(24,24,27,0.055)] transition-all duration-200 hover:scale-105 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200"
+            className="inline-flex h-12 max-w-full w-auto flex-shrink-0 box-border items-center justify-center gap-2 rounded-2xl border border-rose-100 bg-white px-6 text-base font-semibold leading-none whitespace-nowrap text-neutral-700 shadow-[0_10px_28px_rgba(24,24,27,0.055)] transition-all duration-200 hover:scale-105 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200"
           >
             <Github size={18} />
             GitHub

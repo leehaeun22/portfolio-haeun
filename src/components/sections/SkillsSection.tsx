@@ -72,12 +72,12 @@ export function SkillsSection() {
               <motion.div
                 key={skill.name}
                 variants={staggerItem}
-                className="surface-card group flex min-h-[104px] flex-col items-center justify-center gap-3 p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-rose-200 hover:shadow-lg hover:shadow-rose-100/40 dark:hover:border-rose-900/50 dark:hover:shadow-rose-900/20"
+                className="surface-card group flex min-h-[104px] flex-col items-center justify-center gap-3 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-rose-200 hover:shadow-lg hover:shadow-rose-100/40 dark:hover:border-rose-900/50 dark:hover:shadow-rose-900/20 sm:px-6"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-rose-50 text-rose-500 transition-colors duration-300 group-hover:bg-gradient-to-br group-hover:from-rose-500 group-hover:to-violet-500 group-hover:text-white dark:bg-rose-950/30">
                   <SkillIcon size={20} />
                 </span>
-                <span className="text-sm font-semibold leading-snug text-neutral-800 dark:text-neutral-100">
+                <span className="max-w-full text-sm font-semibold leading-snug text-neutral-800 dark:text-neutral-100">
                   {skill.name}
                 </span>
               </motion.div>
