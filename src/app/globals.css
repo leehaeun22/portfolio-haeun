@@ -37,14 +37,26 @@
   --card-padding-y: 22px;
 }
 
-.dark {
-  --bg-base: #0f0f11;
-  --bg-subtle: #1a1020;
-  --bg-card: #18181b;
-  --text-primary: #fafafa;
-  --text-secondary: #d4d4d8;
-  --text-muted: #71717a;
-  --border-color: #27272a;
+.dark,
+:root[data-theme="dark"] {
+  --bg-primary: #131118;
+  --bg-secondary: #17131d;
+  --bg-base: #131118;
+  --bg-subtle: #17131d;
+  --bg-card: #1b1821;
+  --surface: #1b1821;
+  --surface-elevated: #1d1923;
+  --surface-hover: #24202b;
+  --border-color: #342d3d;
+  --border-soft: #2a2531;
+  --text-primary: #f6f3f7;
+  --text-secondary: #bbb3c0;
+  --text-muted: #8f8796;
+  --accent-pink: #ef4f73;
+  --accent-purple: #a95be5;
+  --icon-bg: #f7edf2;
+  --input-bg: #211d27;
+  --input-border: #3a3342;
 }
 
 /* ============================================================
@@ -1735,3 +1747,316 @@ body {
   background-size: 200% 200%;
   animation: gradient-shift 6s ease infinite;
 }
+
+/* ============================================================
+   DARK THEME REFINEMENT
+   ============================================================ */
+.dark body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.dark .soft-gradient-surface {
+  background:
+    radial-gradient(circle at top left, rgba(239, 79, 115, 0.16), transparent 34rem),
+    radial-gradient(circle at bottom right, rgba(169, 91, 229, 0.13), transparent 30rem),
+    var(--bg-primary);
+}
+
+.dark .subtle-section,
+.dark .detail-page .subtle-section {
+  background: var(--bg-secondary);
+}
+
+.dark .section-padding,
+.dark .detail-page,
+.dark main {
+  background-color: var(--bg-primary);
+}
+
+.dark .text-neutral-950,
+.dark .text-neutral-900,
+.dark .text-neutral-800,
+.dark .text-zinc-950,
+.dark .text-zinc-900 {
+  color: var(--text-primary) !important;
+}
+
+.dark .text-neutral-700,
+.dark .text-neutral-600,
+.dark .text-neutral-500,
+.dark .text-zinc-700,
+.dark .text-zinc-600,
+.dark .text-zinc-500 {
+  color: var(--text-secondary) !important;
+}
+
+.dark .text-neutral-400,
+.dark .text-zinc-400 {
+  color: var(--text-muted) !important;
+}
+
+.dark .text-rose-500,
+.dark .text-rose-400,
+.dark .section-eyebrow {
+  color: var(--accent-pink) !important;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.dark .section-description,
+.dark .detail-section-description,
+.dark p {
+  color: var(--text-secondary);
+}
+
+.dark .surface-card,
+.dark .detail-card,
+.dark .detail-feature-card,
+.dark .detail-stat-card,
+.dark .detail-preview-card,
+.dark .detail-cta,
+.dark .experience-card,
+.dark .award-card,
+.dark .publications-card,
+.dark .contact-info-item,
+.dark .contact-form,
+.dark .about-profile-card,
+.dark .about-info-card,
+.dark .project-card {
+  background: var(--surface) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18) !important;
+}
+
+.dark .surface-card:hover,
+.dark .project-card:hover,
+.dark .experience-card:hover,
+.dark .award-card:hover,
+.dark .contact-info-item:hover,
+.dark .detail-feature-card:hover {
+  background: var(--surface-hover) !important;
+  border-color: rgba(239, 79, 115, 0.45) !important;
+}
+
+.dark header {
+  background: rgba(19, 17, 24, 0.92) !important;
+  border-bottom: 1px solid #2d2734 !important;
+  backdrop-filter: blur(18px);
+}
+
+.dark header nav button {
+  color: #c3bbc8;
+}
+
+.dark header nav button[aria-current='true'] {
+  color: var(--accent-pink) !important;
+}
+
+.dark header button[aria-label],
+.dark header .md\:hidden {
+  color: #c3bbc8;
+}
+
+.dark header button[aria-label]:hover,
+.dark header .md\:hidden:hover {
+  background: var(--surface-hover) !important;
+  color: var(--accent-pink) !important;
+}
+
+.dark .hero-avatar-frame {
+  background: var(--surface-elevated);
+  border-color: rgba(239, 79, 115, 0.55);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2);
+}
+
+.dark .hero-status-badge,
+.dark .hero-school-pill,
+.dark .hero-role-pill,
+.dark .hero-button-secondary,
+.dark .detail-inline-link,
+.dark .detail-button-secondary {
+  background: var(--surface-elevated) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-secondary) !important;
+}
+
+.dark .hero-role-pill,
+.dark .hero-school-pill {
+  box-shadow: none;
+}
+
+.dark .hero-bio,
+.dark .about-intro {
+  color: var(--text-secondary) !important;
+}
+
+.dark .about-profile-badge {
+  background: var(--surface-hover) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark .about-info-icon,
+.dark .contact-info-icon,
+.dark .award-icon,
+.dark .detail-preview-icon,
+.dark .detail-step-number,
+.dark .flex.h-11.w-11,
+.dark .flex.h-10.w-10,
+.dark .flex.h-12.w-12 {
+  background: var(--icon-bg) !important;
+  color: var(--accent-pink) !important;
+}
+
+.dark .about-info-label,
+.dark .contact-info-label,
+.dark .experience-date,
+.dark .detail-meta-item span,
+.dark .award-date,
+.dark .project-meta {
+  color: var(--text-muted) !important;
+}
+
+.dark .about-info-value,
+.dark .contact-info-value,
+.dark .contact-status-title,
+.dark .project-title,
+.dark .award-title,
+.dark .publication-content h4,
+.dark .detail-card-title,
+.dark .detail-feature-card h3,
+.dark .detail-title {
+  color: var(--text-primary) !important;
+}
+
+.dark .project-card,
+.dark .project-content {
+  background: var(--surface) !important;
+}
+
+.dark .project-media,
+.dark .detail-preview-media {
+  background: linear-gradient(135deg, #211c27, #191620) !important;
+}
+
+.dark .project-media-inner,
+.dark .detail-preview-placeholder {
+  color: var(--text-primary);
+}
+
+.dark .project-media-icon,
+.dark .detail-preview-icon {
+  box-shadow: none !important;
+}
+
+.dark .project-media-title,
+.dark .detail-preview-title {
+  color: var(--text-primary) !important;
+}
+
+.dark .project-media-category,
+.dark .detail-preview-category,
+.dark .project-link,
+.dark .detail-feature-index,
+.dark .detail-step-arrow {
+  color: var(--accent-pink) !important;
+}
+
+.dark .project-subtitle,
+.dark .project-description,
+.dark .award-description,
+.dark .publication-content p,
+.dark .detail-card-body,
+.dark .detail-feature-card p,
+.dark .detail-description p,
+.dark .detail-preview-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+.dark .project-role,
+.dark .award-organization,
+.dark .publication-content p:nth-of-type(2),
+.dark .detail-process-step strong,
+.dark .detail-meta-item strong {
+  color: #c5bdca !important;
+}
+
+.dark .project-tech-chip,
+.dark .detail-tech-card,
+.dark .experience-keywords span,
+.dark .rounded-full.bg-neutral-100 {
+  background: #2a2531 !important;
+  border: 1px solid #3a3342;
+  color: #f0b6c6 !important;
+}
+
+.dark .experience-list > .absolute,
+.dark .absolute.bottom-0.left-4,
+.dark .absolute.bottom-0.left-5 {
+  opacity: 0.72;
+}
+
+.dark .award-card,
+.dark .publications-card {
+  background: var(--surface) !important;
+}
+
+.dark .publication-item + .publication-item {
+  border-top-color: #302a37 !important;
+}
+
+.dark .contact-label {
+  color: #c1b9c6 !important;
+}
+
+.dark input,
+.dark textarea {
+  background: var(--input-bg) !important;
+  border-color: var(--input-border) !important;
+  color: var(--text-primary) !important;
+  caret-color: var(--accent-pink);
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #77707f !important;
+}
+
+.dark input:focus,
+.dark textarea:focus {
+  border-color: var(--accent-pink) !important;
+  box-shadow: 0 0 0 3px rgba(239, 79, 115, 0.16) !important;
+}
+
+.dark .contact-status-desc,
+.dark .contact-info-label {
+  color: var(--text-secondary) !important;
+}
+
+.dark .contact-status-dot {
+  background: #4ade80 !important;
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.14);
+}
+
+.dark .detail-meta-item {
+  background: rgba(29, 25, 35, 0.82) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark .detail-process-step {
+  background: var(--surface) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark .detail-stat-card span {
+  color: var(--text-muted) !important;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4a3a52;
+}
+
