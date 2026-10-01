@@ -175,6 +175,7 @@
 | `DARK_MODE`            | `true`  | 다크 모드 지원 필수                                                                            |
 
 ## Progress Log
+- [x] 2026-10-01: Profile image updated — Hero/About now use the shared ID photo path and Sejong AX Hackathon award organization was corrected.
 - [x] 2026-10-01: Project detail pages rebuilt — added shared detail data, hero/overview/process/stack/features/CTA layout, and verified all four project pages on desktop and mobile.
 - [x] 2026-10-01: Navigation active state fixed — replaced section tracking with scroll-position logic and verified Projects, Experience, Awards, and Contact active states.
 - [x] 2026-10-01: Hero/About layout refined — rebuilt Hero pills/buttons and About info cards with stable icon/text wrappers, consolidated About intro into one paragraph.

@@ -45,11 +45,12 @@ export function AboutSection() {
 
               <div className="about-avatar-box">
                 <Image
-                  src="/avatar.png"
+                  src={PROFILE.profileImage}
                   alt="이하은 프로필 사진"
                   width={320}
                   height={320}
-                  className="h-full w-full rounded-[1rem] object-cover"
+                  className="h-full w-full rounded-[1rem] object-cover object-center"
+                  unoptimized
                 />
               </div>
             </div>

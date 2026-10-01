@@ -20,12 +20,13 @@ export function HeroSection() {
         >
           <div className="hero-avatar-frame">
             <Image
-              src="/avatar.png"
-              alt="이하은 프로필 이미지"
+              src={PROFILE.profileImage}
+              alt="이하은 프로필 사진"
               width={160}
               height={160}
-              className="h-full w-full rounded-full object-cover"
+              className="h-full w-full rounded-full object-cover object-center"
               priority
+              unoptimized
             />
           </div>
 

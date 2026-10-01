@@ -41,7 +41,7 @@ export const AWARDS: AwardItem[] = [
     id: 'sejong-ax-hackathon-grand-prize',
     date: '2026.08',
     title: '대상',
-    organization: '세종 AX 해커톤',
+    organization: '세종 AX 해커톤 (세종 시장상)',
     description: '세종 AX 해커톤 대상 수상',
   },
 ];
