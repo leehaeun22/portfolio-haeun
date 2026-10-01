@@ -125,6 +125,7 @@
 - [x] 2026-10-01: 메인 페이지 구조 정리 — Research 섹션/내비게이션 제거, Experience를 Projects 다음으로 유지, Awards 섹션 추가 및 Experience 3개 항목으로 compact timeline 재구성
 
 - [x] 2026-10-01: Experience/Awards ??? ?? ? ?? ?? 3?, ?? 6?, Publications 3?? ???? Awards & Honors/?? ?? ??? ??
+- [x] 2026-10-01: Experience/Awards spacing ?? ? SE Lab? ??? ???? ???? Experience/Awards/Publications ?? padding? ?? ?? ?? ??
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
 - [x] 2026-09-30: GitHub 새 저장소 `leehaeun22/portfolio-haeun` 생성 및 main 브랜치 push 완료

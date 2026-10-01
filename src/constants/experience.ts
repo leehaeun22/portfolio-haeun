@@ -23,16 +23,6 @@ export const EXPERIENCE: ExperienceItem[] = [
     tags: ['Software Engineering', 'Web', 'Database', 'AI'],
   },
   {
-    id: 'research-se-lab',
-    type: 'research',
-    period: '2025.06 – Present',
-    category: 'RESEARCH EXPERIENCE',
-    title: 'SE Lab 학부연구생',
-    subtitle: 'Undergraduate Researcher',
-    description: 'AI 기반 웹 테스트와 소프트웨어 공학 관련 연구를 수행하고 있습니다.',
-    tags: ['Software Engineering', 'AI Test Agent', 'Web Testing', 'Research'],
-  },
-  {
     id: 'activity-hongik-urop',
     type: 'activity',
     period: '2025.09 – 2025.12',
@@ -61,5 +51,15 @@ export const EXPERIENCE: ExperienceItem[] = [
     subtitle: '',
     description: '연구 장학생으로 참여하여 연구 및 프로젝트 활동을 수행했습니다.',
     tags: [],
+  },
+  {
+    id: 'research-se-lab',
+    type: 'research',
+    period: '2025.06 – Present',
+    category: 'RESEARCH EXPERIENCE',
+    title: 'SE Lab 학부연구생',
+    subtitle: 'Undergraduate Researcher',
+    description: 'AI 기반 웹 테스트와 소프트웨어 공학 관련 연구를 수행하고 있습니다.',
+    tags: ['Software Engineering', 'AI Test Agent', 'Web Testing', 'Research'],
   },
 ];
