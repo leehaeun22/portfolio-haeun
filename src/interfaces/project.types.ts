@@ -1,5 +1,15 @@
 // Project type definitions
 
+export interface ProjectMetric {
+  value: string;
+  label: string;
+}
+
+export interface ProjectFeature {
+  title: string;
+  description: string;
+}
+
 export interface ProjectData {
   id: string;
   slug: string;
@@ -18,4 +28,10 @@ export interface ProjectData {
   liveUrl: string;
   detailUrl: string;
   featured: boolean;
+  problem: string[];
+  roleDetails: string[];
+  results: string[];
+  metrics: ProjectMetric[];
+  architecture: string[];
+  features: ProjectFeature[];
 }

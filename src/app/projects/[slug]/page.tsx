@@ -1,12 +1,79 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, Github, Layers3 } from 'lucide-react';
 import { PROJECTS } from '@/constants/projects';
+import type { ProjectData } from '@/interfaces/project.types';
 
 interface ProjectDetailPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+function splitDescription(description: string) {
+  const sentences = description.match(/[^.!?。！？]+[.!?。！？]?/g) ?? [description];
+
+  if (sentences.length <= 2) {
+    return [description];
+  }
+
+  const midpoint = Math.ceil(sentences.length / 2);
+  return [sentences.slice(0, midpoint).join(' ').trim(), sentences.slice(midpoint).join(' ').trim()];
+}
+
+function SectionTitle({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
+  return (
+    <div className="detail-section-heading">
+      <span className="section-eyebrow">{eyebrow}</span>
+      <h2 className="text-heading-1 text-neutral-950 dark:text-white">{title}</h2>
+      {description ? (
+        <p className="detail-section-description text-neutral-600 dark:text-neutral-300">
+          {description}
+        </p>
+      ) : null}
+      <div className="section-line" />
+    </div>
+  );
+}
+
+function ProjectPreview({ project }: { project: ProjectData }) {
+  return (
+    <div className="detail-preview-card surface-card">
+      <div className="detail-preview-media bg-gradient-to-br from-rose-50 via-white to-purple-50 dark:from-rose-950/30 dark:via-neutral-950 dark:to-purple-950/30">
+        {project.imageUrl ? (
+          <Image
+            src={project.imageUrl}
+            alt={`${project.title} preview`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 45vw"
+            priority
+          />
+        ) : (
+          <div className="detail-preview-placeholder">
+            <div className="detail-preview-icon bg-white/90 text-rose-500 shadow-sm dark:bg-neutral-900/90">
+              <Layers3 size={22} />
+            </div>
+            <p className="detail-preview-category text-rose-500">{project.category}</p>
+            <p className="detail-preview-title text-neutral-950 dark:text-white">{project.title}</p>
+            <p className="detail-preview-subtitle text-neutral-500 dark:text-neutral-400">
+              Project Preview
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function DetailCard({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <article className="detail-card surface-card">
+      <h2 className="detail-card-title text-neutral-950 dark:text-white">{title}</h2>
+      <div className="detail-card-body text-neutral-600 dark:text-neutral-300">{children}</div>
+    </article>
+  );
 }
 
 export function generateStaticParams() {
@@ -37,131 +104,191 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     notFound();
   }
 
+  const descriptionParagraphs = splitDescription(project.longDescription);
+
   return (
-    <main className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-white">
-      <section className="section-padding soft-gradient-surface">
+    <main className="detail-page min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-white">
+      <section className="detail-hero soft-gradient-surface">
         <div className="section-container">
-          <Link
-            href="/#projects"
-            className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-neutral-600 transition-colors hover:text-rose-500 dark:text-neutral-300"
-          >
+          <Link href="/#projects" className="detail-back-link">
             <ArrowLeft size={16} />
             프로젝트 목록으로 돌아가기
           </Link>
 
-          <div className="grid gap-8 xl:grid-cols-[0.95fr_1.05fr] xl:items-center">
-            <div>
+          <div className="detail-hero-grid">
+            <div className="detail-hero-copy">
               <span className="section-eyebrow">{project.category}</span>
-              <h1 className="text-display-2 text-neutral-950 dark:text-white">{project.title}</h1>
-              <p className="mt-3 text-2xl font-bold text-rose-500">{project.subtitle}</p>
-              <p className="mt-6 max-w-2xl text-body-lg text-neutral-600 dark:text-neutral-300">
-                {project.longDescription}
-              </p>
+              <h1 className="detail-title text-neutral-950 dark:text-white">{project.title}</h1>
+              <p className="detail-subtitle text-rose-500">{project.subtitle}</p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="surface-card flex h-11 items-center gap-2 rounded-full px-5 text-sm font-semibold text-neutral-700 transition-colors hover:text-rose-500 dark:text-neutral-200"
-                  >
-                    <Github size={16} />
-                    GitHub
-                  </a>
-                )}
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="gradient-button flex h-11 items-center gap-2 rounded-full px-5 text-sm font-semibold text-white"
-                  >
-                    <ExternalLink size={16} />
-                    Live
-                  </a>
-                )}
+              <div className="detail-description">
+                {descriptionParagraphs.map((paragraph) => (
+                  <p key={paragraph} className="text-neutral-600 dark:text-neutral-300">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
-            </div>
 
-            <div className="surface-card overflow-hidden">
-              <div className="aspect-video bg-gradient-to-br from-rose-50 via-white to-purple-50 p-8 dark:from-rose-950/30 dark:via-neutral-950 dark:to-purple-950/30">
-                <div className="flex h-full flex-col justify-between rounded-2xl border border-rose-100 bg-white/75 p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/75">
-                  <div className="flex items-center justify-between text-xs font-semibold text-neutral-500">
-                    <span>{project.period}</span>
-                    <span>{project.team}</span>
-                  </div>
-                  <div>
-                    <p className="gradient-text text-4xl font-extrabold">{project.title}</p>
-                    <p className="mt-3 max-w-md text-lg font-semibold leading-snug text-neutral-800 dark:text-neutral-100">
-                      {project.subtitle}
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {project.outcomes.slice(0, 3).map((outcome) => (
-                      <div
-                        key={outcome}
-                        className="rounded-2xl bg-white px-3 py-3 text-center text-xs font-bold text-neutral-700 shadow-sm dark:bg-neutral-950 dark:text-neutral-200"
-                      >
-                        {outcome}
-                      </div>
-                    ))}
-                  </div>
+              <div className="detail-meta-grid">
+                <div className="detail-meta-item">
+                  <span>Period</span>
+                  <strong>{project.period}</strong>
+                </div>
+                <div className="detail-meta-item">
+                  <span>Type</span>
+                  <strong>{project.team}</strong>
+                </div>
+                <div className="detail-meta-item detail-meta-wide">
+                  <span>Role</span>
+                  <strong>{project.role}</strong>
                 </div>
               </div>
+
+              {project.githubUrl ? (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="detail-inline-link"
+                >
+                  <Github size={17} />
+                  GitHub 보기
+                  <ExternalLink size={14} />
+                </a>
+              ) : null}
             </div>
+
+            <ProjectPreview project={project} />
           </div>
         </div>
       </section>
 
-      <section className="section-padding">
-        <div className="section-container grid gap-8 lg:grid-cols-3">
-          <article className="surface-card p-7">
-            <h2 className="text-heading-2 text-neutral-950 dark:text-white">문제 정의</h2>
-            <p className="mt-4 text-sm leading-[1.7] text-neutral-600 dark:text-neutral-300">
-              사람이 직접 웹 페이지를 반복 탐색하며 오류를 찾는 과정은 시간이 많이 들고 누락 가능성이 있습니다.
-              이 프로젝트는 탐색과 결함 후보 수집을 자동화하는 흐름을 목표로 합니다.
-            </p>
-          </article>
-
-          <article className="surface-card p-7">
-            <h2 className="text-heading-2 text-neutral-950 dark:text-white">담당 역할</h2>
-            <p className="mt-4 text-sm leading-[1.7] text-neutral-600 dark:text-neutral-300">
-              {project.role}
-            </p>
-          </article>
-
-          <article className="surface-card p-7">
-            <h2 className="text-heading-2 text-neutral-950 dark:text-white">결과</h2>
-            <ul className="mt-4 space-y-2 text-sm leading-[1.7] text-neutral-600 dark:text-neutral-300">
-              {project.outcomes.map((outcome) => (
-                <li key={outcome}>• {outcome}</li>
-              ))}
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section className="section-padding subtle-section">
+      <section className="detail-section">
         <div className="section-container">
-          <div className="section-heading">
-            <span className="section-eyebrow">Stack</span>
-            <h2 className="text-heading-1 text-neutral-950 dark:text-white">사용 기술</h2>
-            <p className="section-description">
-              프로젝트 맥락에 맞춰 AI 실험, 웹 구현, 데이터 저장과 운영 도구를 함께 사용했습니다.
-            </p>
-            <div className="section-line" />
+          <div className="detail-stats-grid">
+            {project.metrics.map((metric) => (
+              <div key={`${metric.value}-${metric.label}`} className="detail-stat-card surface-card">
+                <strong className="gradient-text">{metric.value}</strong>
+                <span className="text-neutral-500 dark:text-neutral-400">{metric.label}</span>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="flex flex-wrap gap-3">
+      <section className="detail-section">
+        <div className="section-container">
+          <div className="detail-info-grid">
+            <DetailCard title="문제 정의">
+              <div className="detail-paragraph-stack">
+                {project.problem.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </DetailCard>
+
+            <DetailCard title="담당 역할">
+              <ul className="detail-list">
+                {project.roleDetails.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </DetailCard>
+
+            <DetailCard title="결과">
+              <ul className="detail-list">
+                {project.results.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </DetailCard>
+          </div>
+        </div>
+      </section>
+
+      <section className="detail-section subtle-section">
+        <div className="section-container">
+          <SectionTitle
+            eyebrow="Architecture"
+            title="프로젝트 동작 흐름"
+            description="입력부터 결과 확인까지의 핵심 흐름을 간단한 단계로 정리했습니다."
+          />
+
+          <div className="detail-process-grid">
+            {project.architecture.map((step, index) => (
+              <div key={`${step}-${index}`} className="detail-process-step surface-card">
+                <span className="detail-step-number">{String(index + 1).padStart(2, '0')}</span>
+                <strong>{step}</strong>
+                {index < project.architecture.length - 1 ? (
+                  <ArrowRight className="detail-step-arrow" size={16} />
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="detail-section">
+        <div className="section-container">
+          <SectionTitle
+            eyebrow="Stack"
+            title="사용 기술"
+            description="프로젝트 구현에 사용한 주요 언어, 프레임워크, 도구입니다."
+          />
+
+          <div className="detail-stack-grid">
             {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-rose-100 bg-white px-4 py-2 text-sm font-semibold text-rose-600 dark:border-rose-900/30 dark:bg-neutral-900 dark:text-rose-400"
-              >
+              <span key={tag} className="detail-tech-card surface-card text-neutral-800 dark:text-neutral-100">
                 {tag}
               </span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="detail-section subtle-section">
+        <div className="section-container">
+          <SectionTitle
+            eyebrow="Key Features"
+            title="핵심 기능과 기여"
+            description="프로젝트에서 구현한 주요 기능과 기여 내용을 정리했습니다."
+          />
+
+          <div className="detail-feature-grid">
+            {project.features.map((feature, index) => (
+              <article key={feature.title} className="detail-feature-card surface-card">
+                <span className="detail-feature-index">{String(index + 1).padStart(2, '0')}</span>
+                <h3 className="text-neutral-950 dark:text-white">{feature.title}</h3>
+                <p className="text-neutral-600 dark:text-neutral-300">{feature.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="detail-cta-section">
+        <div className="section-container">
+          <div className="detail-cta surface-card">
+            <div>
+              <span className="section-eyebrow">Next</span>
+              <h2 className="text-heading-2 text-neutral-950 dark:text-white">다른 프로젝트도 확인해보세요</h2>
+            </div>
+            <div className="detail-cta-actions">
+              {project.githubUrl ? (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="detail-button detail-button-primary gradient-button"
+                >
+                  <Github size={17} />
+                  GitHub 보기
+                </a>
+              ) : null}
+              <Link href="/#projects" className="detail-button detail-button-secondary">
+                프로젝트 목록으로 돌아가기
+              </Link>
+            </div>
           </div>
         </div>
       </section>
