@@ -8,12 +8,23 @@ import { fadeInUp, fadeInLeft, fadeInRight } from '@/utils/animations';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
+type FormErrors = Partial<Record<keyof FormData, string>>;
+
 interface FormData {
   name: string;
   email: string;
   subject: string;
   message: string;
 }
+
+const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+
+const INITIAL_FORM: FormData = {
+  name: '',
+  email: '',
+  subject: '',
+  message: '',
+};
 
 const CONTACT_LINKS = [
   {
@@ -38,35 +49,83 @@ const CONTACT_LINKS = [
 
 export function ContactSection() {
   const [status, setStatus] = useState<FormStatus>('idle');
-  const [form, setForm] = useState<FormData>({ name: '', email: '', subject: '', message: '' });
-  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [form, setForm] = useState<FormData>(INITIAL_FORM);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [statusMessage, setStatusMessage] = useState('');
 
   const validate = (): boolean => {
-    const newErrors: Partial<FormData> = {};
-    if (!form.name.trim()) newErrors.name = '이름을 입력해주세요';
-    if (!form.email.trim()) newErrors.email = '이메일을 입력해주세요';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = '유효한 이메일 형식이 아닙니다';
-    if (!form.subject.trim()) newErrors.subject = '제목을 입력해주세요';
-    if (!form.message.trim()) newErrors.message = '메시지를 입력해주세요';
+    const newErrors: FormErrors = {};
+
+    if (!form.name.trim()) newErrors.name = '이름을 입력해주세요.';
+    if (!form.email.trim()) {
+      newErrors.email = '이메일을 입력해주세요.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      newErrors.email = '유효한 이메일 형식이 아닙니다.';
+    }
+    if (!form.subject.trim()) newErrors.subject = '제목을 입력해주세요.';
+    if (!form.message.trim()) newErrors.message = '메시지를 입력해주세요.';
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!validate()) return;
-    setStatus('loading');
-    // 실제 메일 전송 API 연동 시 여기에 fetch 추가
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setStatus('success');
-    setForm({ name: '', email: '', subject: '', message: '' });
+
+    if (status === 'loading') return;
+
+    setStatusMessage('');
+    if (!validate()) {
+      setStatus('idle');
+      return;
+    }
+
+    if (!FORM_ENDPOINT) {
+      setStatus('error');
+      setStatusMessage('메시지 전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
+      return;
+    }
+
+    try {
+      setStatus('loading');
+
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          subject: form.subject.trim(),
+          message: form.message.trim(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Formspree request failed');
+      }
+
+      setStatus('success');
+      setStatusMessage('메시지가 전송되었습니다. 확인 후 연락드리겠습니다.');
+      setForm(INITIAL_FORM);
+      setErrors({});
+    } catch {
+      setStatus('error');
+      setStatusMessage('메시지 전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-    if (errors[name as keyof FormData]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    const field = name as keyof FormData;
+
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setStatusMessage('');
+    if (status !== 'loading') setStatus('idle');
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
@@ -98,28 +157,32 @@ export function ContactSection() {
                 연락처 정보
               </h3>
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                아래 채널로도 언제든 연락 가능합니다.
+                아래 채널로 언제든지 연락 가능합니다.
               </p>
             </div>
 
             <div className="contact-info-list">
-              {CONTACT_LINKS.map(({ icon: Icon, label, value, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith('mailto') ? undefined : '_blank'}
-                  rel="noopener noreferrer"
-                  className="contact-info-item surface-card group transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/30 dark:hover:shadow-rose-900/20"
-                >
-                  <div className="contact-info-icon bg-rose-50 text-rose-500 transition-transform group-hover:scale-105 dark:bg-rose-950/30">
-                    <Icon size={20} />
-                  </div>
-                  <div className="contact-info-content">
-                    <p className="contact-info-label text-neutral-400">{label}</p>
-                    <p className="contact-info-value text-neutral-900 dark:text-white">{value}</p>
-                  </div>
-                </a>
-              ))}
+              {CONTACT_LINKS.map(({ icon: Icon, label, value, href }) => {
+                const isEmail = href.startsWith('mailto');
+
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    target={isEmail ? undefined : '_blank'}
+                    rel={isEmail ? undefined : 'noopener noreferrer'}
+                    className="contact-info-item surface-card group transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/30 dark:hover:shadow-rose-900/20"
+                  >
+                    <div className="contact-info-icon bg-rose-50 text-rose-500 transition-transform group-hover:scale-105 dark:bg-rose-950/30">
+                      <Icon size={20} />
+                    </div>
+                    <div className="contact-info-content">
+                      <p className="contact-info-label text-neutral-400">{label}</p>
+                      <p className="contact-info-value text-neutral-900 dark:text-white">{value}</p>
+                    </div>
+                  </a>
+                );
+              })}
 
               <div className="contact-info-item contact-info-item-status surface-card">
                 <div className="contact-info-icon bg-emerald-50 text-emerald-500 dark:bg-emerald-950/30">
@@ -139,130 +202,131 @@ export function ContactSection() {
           </motion.div>
 
           <motion.div {...fadeInRight} className="contact-form-column">
-            {status === 'success' ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="surface-card flex min-h-96 flex-col items-center justify-center gap-5 p-8 text-center sm:p-10"
-              >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-rose-50 dark:bg-rose-950/30">
-                  <CheckCircle size={32} className="text-rose-500" />
-                </div>
-                <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
-                  메시지를 보냈습니다
-                </h3>
-                <p className="text-neutral-500 dark:text-neutral-400">
-                  빠른 시일 안에 답장드릴게요.
-                </p>
-                <button
-                  onClick={() => setStatus('idle')}
-                  className="gradient-button mt-4 min-h-12 rounded-full px-7 py-3 text-sm font-semibold text-white"
-                >
-                  다시 작성하기
-                </button>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} noValidate className="contact-form surface-card">
-                <div className="contact-form-grid">
-                  <div className="contact-field">
-                    <label className="contact-label text-neutral-700 dark:text-neutral-300">
-                      이름 <span className="text-rose-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="홍길동"
-                      className={inputClass('name')}
-                      aria-invalid={!!errors.name}
-                    />
-                    {errors.name && (
-                      <p className="contact-error text-red-500">
-                        <AlertCircle size={12} /> {errors.name}
-                      </p>
-                    )}
-                  </div>
-                  <div className="contact-field">
-                    <label className="contact-label text-neutral-700 dark:text-neutral-300">
-                      이메일 <span className="text-rose-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="example@email.com"
-                      className={inputClass('email')}
-                      aria-invalid={!!errors.email}
-                    />
-                    {errors.email && (
-                      <p className="contact-error text-red-500">
-                        <AlertCircle size={12} /> {errors.email}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
+            <form onSubmit={handleSubmit} noValidate className="contact-form surface-card">
+              <div className="contact-form-grid">
                 <div className="contact-field">
-                  <label className="contact-label text-neutral-700 dark:text-neutral-300">
-                    제목 <span className="text-rose-500">*</span>
+                  <label htmlFor="contact-name" className="contact-label text-neutral-700 dark:text-neutral-300">
+                    이름 <span className="text-rose-500">*</span>
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
-                    name="subject"
-                    value={form.subject}
+                    name="name"
+                    value={form.name}
                     onChange={handleChange}
-                    placeholder="작업 제안입니다"
-                    className={inputClass('subject')}
-                    aria-invalid={!!errors.subject}
+                    placeholder="홍길동"
+                    className={inputClass('name')}
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? 'contact-name-error' : undefined}
+                    required
                   />
-                  {errors.subject && (
-                    <p className="contact-error text-red-500">
-                      <AlertCircle size={12} /> {errors.subject}
+                  {errors.name && (
+                    <p id="contact-name-error" className="contact-error text-red-500">
+                      <AlertCircle size={12} /> {errors.name}
                     </p>
                   )}
                 </div>
-
                 <div className="contact-field">
-                  <label className="contact-label text-neutral-700 dark:text-neutral-300">
-                    메시지 <span className="text-rose-500">*</span>
+                  <label htmlFor="contact-email" className="contact-label text-neutral-700 dark:text-neutral-300">
+                    이메일 <span className="text-rose-500">*</span>
                   </label>
-                  <textarea
-                    name="message"
-                    value={form.message}
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    value={form.email}
                     onChange={handleChange}
-                    rows={5}
-                    placeholder="안녕하세요. 함께하고 싶은 내용을 자유롭게 적어주세요."
-                    className={inputClass('message') + ' min-h-40 resize-y'}
-                    aria-invalid={!!errors.message}
+                    placeholder="example@email.com"
+                    className={inputClass('email')}
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? 'contact-email-error' : undefined}
+                    required
                   />
-                  {errors.message && (
-                    <p className="contact-error text-red-500">
-                      <AlertCircle size={12} /> {errors.message}
+                  {errors.email && (
+                    <p id="contact-email-error" className="contact-error text-red-500">
+                      <AlertCircle size={12} /> {errors.email}
                     </p>
                   )}
                 </div>
+              </div>
 
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="gradient-button flex min-h-14 w-full items-center justify-center gap-2 rounded-xl px-6 py-4 font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-rose-200/50 disabled:cursor-not-allowed disabled:opacity-70 dark:hover:shadow-rose-900/30"
+              <div className="contact-field">
+                <label htmlFor="contact-subject" className="contact-label text-neutral-700 dark:text-neutral-300">
+                  제목 <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  id="contact-subject"
+                  type="text"
+                  name="subject"
+                  value={form.subject}
+                  onChange={handleChange}
+                  placeholder="작업 제안입니다"
+                  className={inputClass('subject')}
+                  aria-invalid={!!errors.subject}
+                  aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
+                  required
+                />
+                {errors.subject && (
+                  <p id="contact-subject-error" className="contact-error text-red-500">
+                    <AlertCircle size={12} /> {errors.subject}
+                  </p>
+                )}
+              </div>
+
+              <div className="contact-field">
+                <label htmlFor="contact-message" className="contact-label text-neutral-700 dark:text-neutral-300">
+                  메시지 <span className="text-rose-500">*</span>
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  rows={5}
+                  placeholder="안녕하세요. 함께하고 싶은 내용을 자유롭게 적어주세요."
+                  className={inputClass('message') + ' min-h-40 resize-y'}
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? 'contact-message-error' : undefined}
+                  required
+                />
+                {errors.message && (
+                  <p id="contact-message-error" className="contact-error text-red-500">
+                    <AlertCircle size={12} /> {errors.message}
+                  </p>
+                )}
+              </div>
+
+              {statusMessage && (
+                <div
+                  role="status"
+                  className={`rounded-xl border px-4 py-3 text-sm leading-relaxed ${
+                    status === 'success'
+                      ? 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/60 dark:bg-emerald-950/30 dark:text-emerald-300'
+                      : 'border-red-200 bg-red-50 text-red-600 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300'
+                  }`}
                 >
-                  {status === 'loading' ? (
-                    <>
-                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
-                      전송 중...
-                    </>
-                  ) : (
-                    <>
-                      <Send size={16} />
-                      메시지 보내기
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
+                  {statusMessage}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="gradient-button flex min-h-14 w-full items-center justify-center gap-2 rounded-xl px-6 py-4 font-semibold text-white transition-all duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-rose-200/50 disabled:cursor-not-allowed disabled:opacity-70 dark:hover:shadow-rose-900/30"
+              >
+                {status === 'loading' ? (
+                  <>
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                    전송 중...
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} />
+                    메시지 보내기
+                  </>
+                )}
+              </button>
+            </form>
           </motion.div>
         </div>
       </div>
