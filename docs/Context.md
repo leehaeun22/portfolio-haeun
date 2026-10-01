@@ -175,6 +175,7 @@
 | `DARK_MODE`            | `true`  | 다크 모드 지원 필수                                                                            |
 
 ## Progress Log
+- [x] 2026-10-01: Contact Formspree diagnostics improved — confirmed Next.js environment, kept NEXT_PUBLIC_FORMSPREE_ENDPOINT, added missing/invalid endpoint checks and Formspree response logging.
 - [x] 2026-10-01: Contact form wired to Formspree — updated email to haeum2004@naver.com, added mailto contact card, client validation, async submit states, success/failure feedback, and NEXT_PUBLIC_FORMSPREE_ENDPOINT example.
 - [x] 2026-10-01: Dark mode redesigned — added dark theme tokens and unified surface, text, project media, awards, publications, contact, and input colors.
 - [x] 2026-10-01: Profile image updated — Hero/About now use the shared ID photo path and Sejong AX Hackathon award organization was corrected.

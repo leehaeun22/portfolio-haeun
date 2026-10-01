@@ -18,6 +18,7 @@ interface FormData {
 }
 
 const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+const FORMSPREE_ENDPOINT_PATTERN = /^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/;
 
 const INITIAL_FORM: FormData = {
   name: '',
@@ -81,13 +82,31 @@ export function ContactSection() {
     }
 
     if (!FORM_ENDPOINT) {
+      console.error('NEXT_PUBLIC_FORMSPREE_ENDPOINT 환경변수가 설정되지 않았습니다.');
       setStatus('error');
-      setStatusMessage('메시지 전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
+      setStatusMessage('문의 폼 설정이 완료되지 않았습니다.');
+      return;
+    }
+
+    if (!FORMSPREE_ENDPOINT_PATTERN.test(FORM_ENDPOINT)) {
+      console.error('Formspree endpoint 형식이 올바르지 않습니다.', {
+        expected: 'https://formspree.io/f/{FORM_ID}',
+        received: FORM_ENDPOINT,
+      });
+      setStatus('error');
+      setStatusMessage('문의 폼 설정이 완료되지 않았습니다.');
       return;
     }
 
     try {
       setStatus('loading');
+
+      const payload = {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        subject: form.subject.trim(),
+        message: form.message.trim(),
+      };
 
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -95,23 +114,27 @@ export function ContactSection() {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.email.trim(),
-          subject: form.subject.trim(),
-          message: form.message.trim(),
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        throw new Error('Formspree request failed');
+        const errorData = await response.json().catch(() => null);
+
+        console.error('Formspree submission failed:', {
+          status: response.status,
+          statusText: response.statusText,
+          errorData,
+        });
+
+        throw new Error('Form submission failed');
       }
 
       setStatus('success');
       setStatusMessage('메시지가 전송되었습니다. 확인 후 연락드리겠습니다.');
       setForm(INITIAL_FORM);
       setErrors({});
-    } catch {
+    } catch (error) {
+      console.error('Contact form submission error:', error);
       setStatus('error');
       setStatusMessage('메시지 전송에 실패했습니다. 잠시 후 다시 시도해주세요.');
     }
