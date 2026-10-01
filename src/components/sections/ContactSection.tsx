@@ -80,10 +80,9 @@ export function ContactSection() {
   return (
     <section id="contact" className="section-padding">
       <div className="section-container">
-        {/* Title */}
         <motion.div {...fadeInUp} className="section-heading">
-          <span className="section-eyebrow">Contact</span>
-          <h2 className="text-heading-1 text-neutral-900 dark:text-white mb-4">
+          <span className="section-eyebrow">CONTACT</span>
+          <h2 className="mb-4 text-heading-1 text-neutral-900 dark:text-white">
             함께 문제를 해결할 기회를 기다립니다
           </h2>
           <p className="section-description">
@@ -92,52 +91,54 @@ export function ContactSection() {
           <div className="section-line" />
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-8 xl:grid-cols-5 xl:gap-10">
-          {/* Contact info */}
-          <motion.div {...fadeInLeft} className="xl:col-span-2 space-y-6">
+        <div className="contact-layout">
+          <motion.div {...fadeInLeft} className="contact-info-column">
             <div>
-              <h3 className="text-heading-2 text-neutral-900 dark:text-white font-bold mb-2">
+              <h3 className="mb-2 text-heading-2 font-bold text-neutral-900 dark:text-white">
                 연락처 정보
               </h3>
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                아래 채널로도 언제든 연락 가능합니다
+                아래 채널로도 언제든 연락 가능합니다.
               </p>
             </div>
 
-            {CONTACT_LINKS.map(({ icon: Icon, label, value, href }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith('mailto') ? undefined : '_blank'}
-                rel="noopener noreferrer"
-                className="surface-card group flex items-center gap-4 px-6 py-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/30 dark:hover:shadow-rose-900/20"
-              >
-                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-rose-50 transition-transform group-hover:scale-110 dark:bg-rose-950/30">
-                  <Icon size={20} className="text-rose-500" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-xs text-neutral-400 mb-0.5">{label}</p>
-                  <p className="text-sm font-semibold text-neutral-900 dark:text-white">{value}</p>
-                </div>
-              </a>
-            ))}
+            <div className="contact-info-list">
+              {CONTACT_LINKS.map(({ icon: Icon, label, value, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith('mailto') ? undefined : '_blank'}
+                  rel="noopener noreferrer"
+                  className="contact-info-item surface-card group transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-rose-100/30 dark:hover:shadow-rose-900/20"
+                >
+                  <div className="contact-info-icon bg-rose-50 text-rose-500 transition-transform group-hover:scale-105 dark:bg-rose-950/30">
+                    <Icon size={20} />
+                  </div>
+                  <div className="contact-info-content">
+                    <p className="contact-info-label text-neutral-400">{label}</p>
+                    <p className="contact-info-value text-neutral-900 dark:text-white">{value}</p>
+                  </div>
+                </a>
+              ))}
 
-            {/* Availability note */}
-            <div
-              className="surface-card px-6 py-5 text-sm"
-            >
-              <div className="flex items-center gap-2 mb-1">
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="font-semibold text-neutral-900 dark:text-white">현재 활동 중</span>
+              <div className="contact-info-item contact-info-item-status surface-card">
+                <div className="contact-info-icon bg-emerald-50 text-emerald-500 dark:bg-emerald-950/30">
+                  <CheckCircle size={20} />
+                </div>
+                <div className="contact-info-content">
+                  <div className="contact-status-title text-neutral-900 dark:text-white">
+                    <span className="contact-status-dot" />
+                    <span>현재 활동 중</span>
+                  </div>
+                  <p className="contact-status-desc text-neutral-500 dark:text-neutral-400">
+                    함께 문제를 해결하고 새로운 시스템을 만드는 기회를 기다리고 있습니다.
+                  </p>
+                </div>
               </div>
-              <p className="text-neutral-500 dark:text-neutral-400">
-                함께 문제를 해결하고 새로운 시스템을 만드는 기회를 기다리고 있습니다.
-              </p>
             </div>
           </motion.div>
 
-          {/* Contact form */}
-          <motion.div {...fadeInRight} className="xl:col-span-3">
+          <motion.div {...fadeInRight} className="contact-form-column">
             {status === 'success' ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -151,7 +152,7 @@ export function ContactSection() {
                   메시지를 보냈습니다
                 </h3>
                 <p className="text-neutral-500 dark:text-neutral-400">
-                  빠른 시일 내에 답장드릴게요
+                  빠른 시일 안에 답장드릴게요.
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
@@ -161,14 +162,10 @@ export function ContactSection() {
                 </button>
               </motion.div>
             ) : (
-              <form
-                onSubmit={handleSubmit}
-                noValidate
-                className="surface-card space-y-6 px-7 py-6 sm:px-8 sm:py-8 xl:px-10"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
+              <form onSubmit={handleSubmit} noValidate className="contact-form surface-card">
+                <div className="contact-form-grid">
+                  <div className="contact-field">
+                    <label className="contact-label text-neutral-700 dark:text-neutral-300">
                       이름 <span className="text-rose-500">*</span>
                     </label>
                     <input
@@ -181,13 +178,13 @@ export function ContactSection() {
                       aria-invalid={!!errors.name}
                     />
                     {errors.name && (
-                      <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                      <p className="contact-error text-red-500">
                         <AlertCircle size={12} /> {errors.name}
                       </p>
                     )}
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
+                  <div className="contact-field">
+                    <label className="contact-label text-neutral-700 dark:text-neutral-300">
                       이메일 <span className="text-rose-500">*</span>
                     </label>
                     <input
@@ -200,15 +197,15 @@ export function ContactSection() {
                       aria-invalid={!!errors.email}
                     />
                     {errors.email && (
-                      <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                      <p className="contact-error text-red-500">
                         <AlertCircle size={12} /> {errors.email}
                       </p>
                     )}
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
+                <div className="contact-field">
+                  <label className="contact-label text-neutral-700 dark:text-neutral-300">
                     제목 <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -216,19 +213,19 @@ export function ContactSection() {
                     name="subject"
                     value={form.subject}
                     onChange={handleChange}
-                    placeholder="협업 제안합니다"
+                    placeholder="작업 제안입니다"
                     className={inputClass('subject')}
                     aria-invalid={!!errors.subject}
                   />
                   {errors.subject && (
-                    <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                    <p className="contact-error text-red-500">
                       <AlertCircle size={12} /> {errors.subject}
                     </p>
                   )}
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
+                <div className="contact-field">
+                  <label className="contact-label text-neutral-700 dark:text-neutral-300">
                     메시지 <span className="text-rose-500">*</span>
                   </label>
                   <textarea
@@ -241,7 +238,7 @@ export function ContactSection() {
                     aria-invalid={!!errors.message}
                   />
                   {errors.message && (
-                    <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                    <p className="contact-error text-red-500">
                       <AlertCircle size={12} /> {errors.message}
                     </p>
                   )}
@@ -254,7 +251,7 @@ export function ContactSection() {
                 >
                   {status === 'loading' ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
                       전송 중...
                     </>
                   ) : (

@@ -130,6 +130,7 @@
 - [x] 2026-10-01: Experience ?? DOM ?? ??? ? content/date grid ??, fixed height/overflow clipping ?? keywords? ?? ?? flow? ????? ??
 - [x] 2026-10-01: Awards/Publications card layout refined — separated award icon/content columns, added publication list spacing, and standardized card inner padding.
 - [x] 2026-10-01: Projects card layout refined — changed section title to 프로젝트, standardized media/content wrappers, fixed placeholder overlap and content padding across all 4 project cards.
+- [x] 2026-10-01: Contact layout refined — rebuilt contact items with icon/content columns, standardized item spacing, and adjusted form/grid spacing.
 ### Phase 3 — 최적화 및 배포 ⏸️
 - [x] 2026-09-30: Vercel 배포 준비 — package.json/package-lock.json Git 제외 해제, 산출물·로그·환경 파일 제외, 프로덕션 빌드 및 타입 검사 통과
 - [x] 2026-09-30: GitHub 새 저장소 `leehaeun22/portfolio-haeun` 생성 및 main 브랜치 push 완료
